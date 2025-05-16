@@ -11,13 +11,13 @@ const HeroSection = () => {
       
       <div className="container mx-auto px-4 h-screen flex flex-col justify-center items-start">
         <div className="max-w-2xl mt-20 md:mt-0">
-          <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-4 animate-float">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-tight mb-4 animate-float">
             Transform Your <span className="text-yellow-400">Outdoor Space</span>
           </h1>
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white mb-6">
             Digger & Driver Hire Available
           </h2>
-          <p className="text-white text-lg mb-8 max-w-lg">
+          <p className="text-white text-base sm:text-lg mb-8 max-w-lg">
             We provide a variety of professional landscaping services to keep your garden in perfect shape.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
