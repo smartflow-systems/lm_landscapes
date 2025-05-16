@@ -4,7 +4,12 @@ import WaveDivider from './WaveDivider';
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen bg-cover bg-center parallax hero-overlay">
+    <section id="home" className="relative min-h-screen bg-cover bg-center" 
+      style={{ 
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/attached_assets/IMG_0482.jpeg)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}>
       <div className="absolute inset-0 overflow-hidden">
         <LeafAnimation />
       </div>
