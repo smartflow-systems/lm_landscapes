@@ -1,6 +1,14 @@
 import { services } from '@/data/services';
 import WaveDivider from './WaveDivider';
 
+// Import landscape images directly
+import img1 from "../../public/IMG_0482.jpeg";
+import img2 from "../../public/IMG_0483.jpeg";
+import img3 from "../../public/IMG_0484.jpeg";
+import img4 from "../../public/IMG_0485.jpeg";
+import img5 from "../../public/IMG_0488.jpeg";
+import img6 from "../../public/IMG_0489.jpeg";
+
 const ServicesSection = () => {
   return (
     <section id="services" className="py-16 bg-secondary relative">
