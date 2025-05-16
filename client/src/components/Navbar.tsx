@@ -39,7 +39,7 @@ const Navbar = () => {
           {/* Logo Container */}
           <div className="h-14 w-14 rounded-full overflow-hidden">
             <img 
-              src="/attached_assets/IMG_20250516_183911_615.jpg" 
+              src="@assets/IMG_20250516_183911_634.jpg" 
               alt="L&M Logo" 
               className="w-full h-full object-cover"
             />
@@ -71,14 +71,14 @@ const Navbar = () => {
       </div>
       
       {/* Mobile Navigation */}
-      <div className={cn("md:hidden bg-primary text-white", isMobileMenuOpen ? "block" : "hidden")}>
+      <div className={cn("md:hidden bg-primary text-white shadow-lg", isMobileMenuOpen ? "block" : "hidden")}>
         <div className="container mx-auto px-4 py-3 flex flex-col space-y-3">
-          <a href="#home" className="py-2 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Home</a>
-          <a href="#services" className="py-2 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Services</a>
-          <a href="#about" className="py-2 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>About</a>
-          <a href="#gallery" className="py-2 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Gallery</a>
-          <a href="#testimonials" className="py-2 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Testimonials</a>
-          <a href="#contact" className="py-2 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Contact</a>
+          <a href="#home" className="py-3 text-center border-b border-green-800 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Home</a>
+          <a href="#services" className="py-3 text-center border-b border-green-800 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Services</a>
+          <a href="#about" className="py-3 text-center border-b border-green-800 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>About</a>
+          <a href="#gallery" className="py-3 text-center border-b border-green-800 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Gallery</a>
+          <a href="#testimonials" className="py-3 text-center border-b border-green-800 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Testimonials</a>
+          <a href="#contact" className="py-3 text-center hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Contact</a>
         </div>
       </div>
     </nav>

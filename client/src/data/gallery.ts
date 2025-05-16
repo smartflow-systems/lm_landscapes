@@ -1,3 +1,4 @@
+
 export type GalleryItem = {
   id: string;
   title: string;
@@ -9,23 +10,23 @@ export type GalleryItem = {
 export const galleryItems: GalleryItem[] = [
   {
     id: '1',
-    title: 'Garden Renovation',
-    description: 'Complete transformation of an overgrown garden into a maintained landscape',
-    beforeImage: 'https://images.unsplash.com/photo-1627759566062-a5e0c163cd37?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500',
-    afterImage: 'https://images.unsplash.com/photo-1558904541-efa843a96f01?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500'
+    title: 'Tuck Pointing Restoration',
+    description: 'Complete restoration of brickwork through professional tuck pointing, enhancing both structural integrity and aesthetic appeal',
+    beforeImage: '/assets/IMG_0480.jpeg',
+    afterImage: '/assets/IMG_0481.jpeg'
   },
   {
     id: '2',
-    title: 'Driveway Installation',
-    description: 'Replacing an old concrete driveway with a beautiful stone paved design',
-    beforeImage: 'https://images.unsplash.com/photo-1571737316396-8cda9bc8c6a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500',
-    afterImage: 'https://images.unsplash.com/photo-1600240644455-3edc55c375fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500'
+    title: 'Brick Wall Renovation',
+    description: 'Comprehensive brick wall renovation with precise tuck pointing, ensuring long-lasting durability and improved appearance',
+    beforeImage: '/assets/IMG_0495.jpeg',
+    afterImage: '/assets/IMG_0496.jpeg'
   },
   {
     id: '3',
-    title: 'Decking & Lighting',
-    description: 'Adding a custom wooden deck with integrated lighting for evening enjoyment',
-    beforeImage: 'https://images.unsplash.com/photo-1558370781-d6196949e317?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500',
-    afterImage: 'https://images.unsplash.com/photo-1597845452876-860151fe04a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500'
+    title: 'Heritage Masonry Work',
+    description: 'Detailed tuck pointing work on heritage brickwork, preserving historical character while reinforcing structural stability',
+    beforeImage: '/assets/IMG_0486.jpeg',
+    afterImage: '/assets/IMG_0487.jpeg'
   }
 ];
