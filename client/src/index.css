@@ -130,7 +130,7 @@
   }
 
   .hero-overlay {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/attached_assets/IMG_20250516_183911_634.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/assets/IMG_0482.jpeg');
     background-size: cover;
     background-position: center;
     min-height: 100vh;
