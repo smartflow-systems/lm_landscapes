@@ -20,10 +20,10 @@ const HeroSection = () => {
           <p className="text-white text-base sm:text-lg mb-8 max-w-lg">
             We provide a variety of professional landscaping services to keep your garden in perfect shape.
           </p>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <a 
               href="#contact" 
-              className="bg-primary hover:bg-accent text-white text-lg font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center justify-center"
+              className="bg-primary hover:bg-accent text-white text-lg font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center justify-center w-fit"
             >
               <span>Get a Free Quote</span>
               <i className="fas fa-arrow-right ml-2"></i>
