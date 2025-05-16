@@ -19,7 +19,7 @@ export const services: Service[] = [
     title: 'Fencing, Sleepers, Decking & Lighting',
     description: 'Create beautiful boundaries and outdoor living spaces with our quality fencing, sleepers, decking, and atmospheric lighting solutions.',
     icon: 'fa-fence',
-    image: 'https://images.unsplash.com/photo-1597845452876-860151fe04a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500'
+    image: '/assets/IMG_0495.jpeg'
   },
   {
     id: 'painting',
