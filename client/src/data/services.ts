@@ -33,7 +33,7 @@ export const services: Service[] = [
     title: 'Full Landscape Design',
     description: 'Transform your outdoor space with our comprehensive landscape design services, creating harmony between aesthetics and functionality.',
     icon: 'fa-drafting-compass',
-    image: 'https://images.unsplash.com/photo-1551410224-699683e15636?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500'
+    image: '/assets/IMG_0488.jpeg'
   },
   {
     id: 'driveways',
