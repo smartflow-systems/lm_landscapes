@@ -12,7 +12,7 @@ export const services: Service[] = [
     title: 'Digger & Driver Hire',
     description: 'Professional excavation services for landscaping projects of any size. Our skilled operators can handle all your digging needs.',
     icon: 'fa-truck-monster',
-    image: 'https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500'
+    image: '/assets/IMG_0498.jpeg'
   },
   {
     id: 'fencing',
