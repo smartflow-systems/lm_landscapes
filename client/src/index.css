@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base colors */
+  --primary: 98 22% 19%; /* #2A6438 - main green */
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 38 55% 92%; /* #F5EFE0 - beige */
+  --secondary-foreground: 98 22% 19%;
+  
+  --accent: 142 46% 22%; /* #1A472A - dark green */
+  --accent-foreground: 0 0% 100%;
+  
+  /* UI colors */
+  --background: 60 33% 98%; /* #FAFAF7 - off white */
+  --foreground: 0 0% 20%; /* #333333 - dark gray */
+
+  --muted: 38 55% 92%; /* Same as secondary */
+  --muted-foreground: 0 0% 45%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 20%;
+  
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 20%;
+  
+  --border: 38 55% 92%;
+  --input: 38 55% 92%;
+  
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 98 22% 19%;
+
+  /* Additional brand colors */
+  --purple: 260 30% 50%; /* #7D5BA6 - purple accent */
+  --yellow: 45 100% 70%; /* #FFD966 - yellow accent */
+  
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 0 0% 20%;
+  --foreground: 60 33% 98%;
+  
+  --muted: 210 20% 25%;
+  --muted-foreground: 38 55% 92%;
+  
+  --popover: 0 0% 20%;
+  --popover-foreground: 60 33% 98%;
+  
+  --card: 0 0% 20%;
+  --card-foreground: 60 33% 98%;
+  
+  --border: 210 20% 25%;
+  --input: 210 20% 25%;
+  
+  --primary: 98 22% 19%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 210 20% 25%;
+  --secondary-foreground: 60 33% 98%;
+  
+  --accent: 142 46% 22%;
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --ring: 38 55% 92%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .wave-divider {
+    @apply relative h-[70px] bg-transparent;
+  }
+  
+  .wave-divider::before {
+    content: '';
+    @apply absolute block left-0 w-full h-[70px] bg-no-repeat bg-cover z-10;
+  }
+  
+  .wave-divider-secondary::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z' fill='%23F5EFE0'%3E%3C/path%3E%3C/svg%3E");
+  }
+  
+  .wave-divider-primary::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z' fill='%232A6438'%3E%3C/path%3E%3C/svg%3E");
+  }
+  
+  .wave-divider-bottom::before {
+    @apply rotate-180 bottom-0;
+  }
+  
+  .wave-divider-top::before {
+    @apply top-0;
+  }
+
+  .parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .hero-overlay {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1558904541-efa843a96f01');
+  }
+
+  .leaf {
+    @apply absolute w-5 h-5 pointer-events-none z-[100] opacity-0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232A6438'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A12.15,12.15,0,0,0,17,8Zm0,0'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: leaf-fall 10s linear infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+
+  @keyframes leaf-fall {
+    0% { transform: translateY(-5vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-sway {
+    animation: sway 6s ease-in-out infinite;
+  }
+}
