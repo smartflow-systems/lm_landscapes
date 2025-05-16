@@ -82,11 +82,15 @@
   }
 
   body {
-    @apply antialiased bg-background text-foreground font-sans;
+    @apply antialiased bg-background text-[#F5EFE0] font-sans;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    @apply font-heading text-[#F5EFE0];
+  }
+
+  p {
+    @apply text-[#F5EFE0];
   }
 }
 
