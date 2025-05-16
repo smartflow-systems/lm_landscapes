@@ -124,7 +124,7 @@
   }
 
   .hero-overlay {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1558904541-efa843a96f01');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/attached_assets/IMG_20250516_183911_634.jpg');
   }
 
   .leaf {
