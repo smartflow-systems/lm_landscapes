@@ -24,8 +24,8 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: '3',
-    title: 'Heritage Masonry Work',
-    description: 'Detailed tuck pointing work on heritage brickwork, preserving historical character while reinforcing structural stability',
+    title: 'External Painting & Garden Maintenance',
+    description: 'Professional external painting and comprehensive garden maintenance services that enhance the appearance of your property',
     beforeImage: '/assets/IMG_0486.jpeg',
     afterImage: '/assets/IMG_0487.jpeg'
   }
