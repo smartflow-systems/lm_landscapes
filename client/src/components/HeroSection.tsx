@@ -9,8 +9,8 @@ const HeroSection = () => {
         <LeafAnimation />
       </div>
       
-      <div className="container mx-auto px-4 h-screen flex flex-col justify-center items-start">
-        <div className="max-w-2xl mt-20 md:mt-0">
+      <div className="container mx-auto px-4 min-h-screen flex flex-col justify-center items-start py-24">
+        <div className="max-w-2xl">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-tight mb-4 animate-float">
             Transform Your <span className="text-yellow-400">Outdoor Space</span>
           </h1>
