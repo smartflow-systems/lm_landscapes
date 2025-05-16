@@ -15,13 +15,15 @@ const GallerySection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {galleryItems.map((item) => (
-            <div key={item.id} className="rounded-lg overflow-hidden shadow-lg">
+            <div key={item.id} className="rounded-lg shadow-lg relative">
+  <div className="overflow-hidden">
               <BeforeAfterSlider
                 beforeImage={item.beforeImage}
                 afterImage={item.afterImage}
                 beforeAlt={`${item.title} Before`}
                 afterAlt={`${item.title} After`}
               />
+              </div>
               <div className="p-4 bg-white">
                 <h3 className="text-lg font-semibold text-primary">{item.title}</h3>
                 <p className="text-sm text-darkgray">{item.description}</p>
