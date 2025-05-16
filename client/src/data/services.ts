@@ -40,6 +40,6 @@ export const services: Service[] = [
     title: 'Driveways & Patios',
     description: 'Enhance your property with our custom driveway and patio solutions, using quality materials for durability and aesthetic appeal.',
     icon: 'fa-road',
-    image: 'https://images.unsplash.com/photo-1600240644455-3edc55c375fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500'
+    image: '/assets/IMG_0497.jpeg'
   }
 ];
