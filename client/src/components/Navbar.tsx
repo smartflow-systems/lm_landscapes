@@ -37,10 +37,12 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
           {/* Logo Container */}
-          <div className="h-14 w-14 rounded-full bg-secondary flex items-center justify-center border-2 border-primary">
-            <div className="relative h-10 w-10">
-              <i className="fas fa-leaf text-primary text-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
-            </div>
+          <div className="h-14 w-14 rounded-full overflow-hidden">
+            <img 
+              src="/attached_assets/IMG_20250516_183911_615.jpg" 
+              alt="L&M Logo" 
+              className="w-full h-full object-cover"
+            />
           </div>
           <div className="ml-3">
             <h1 className="text-white font-bold text-xl" style={{ fontFamily: 'Montserrat, sans-serif' }}>L&M</h1>
