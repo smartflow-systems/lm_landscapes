@@ -4,13 +4,13 @@ import WaveDivider from './WaveDivider';
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen bg-cover bg-center parallax hero-overlay flex flex-col">
+    <section id="home" className="relative min-h-screen bg-cover bg-center parallax hero-overlay">
       <div className="absolute inset-0 overflow-hidden">
         <LeafAnimation />
       </div>
       
-      <div className="container mx-auto px-4 flex-1 flex flex-col justify-center items-start">
-        <div className="max-w-2xl">
+      <div className="container mx-auto px-4 h-full flex items-center">
+        <div className="max-w-2xl relative z-10">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#F5EFE0] leading-tight mb-4 animate-float">
             Transform Your <span className="text-[#F5EFE0]">Outdoor Space</span>
           </h1>
