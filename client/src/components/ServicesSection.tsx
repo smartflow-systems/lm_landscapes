@@ -3,8 +3,8 @@ import WaveDivider from './WaveDivider';
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-16 bg-secondary relative">
-      <div className="container mx-auto px-4">
+    <section id="services" className="bg-secondary">
+      <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="text-center mb-12 md:mb-16">
           <span className="inline-block bg-primary text-white text-sm font-bold px-3 py-1 rounded-full mb-2">WHAT WE DO</span>
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Our Professional Services</h2>
@@ -12,7 +12,7 @@ const ServicesSection = () => {
             We offer a comprehensive range of landscaping services to transform and maintain your outdoor spaces.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map((service) => (
             <div 
@@ -47,7 +47,7 @@ const ServicesSection = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="text-center mt-12">
           <a 
             href="#contact" 
@@ -58,7 +58,7 @@ const ServicesSection = () => {
           </a>
         </div>
       </div>
-      
+
       <div className="absolute bottom-0 left-0 right-0">
         <WaveDivider position="bottom" color="primary" />
       </div>

@@ -12,7 +12,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 min-h-screen flex flex-col justify-center items-start py-24">
         <div className="max-w-2xl">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#F5EFE0] leading-tight mb-4 animate-float">
-            Transform Your <span className="text-[#F5EFE0]">Outdoor Space</span>
+            Transform Your <span className="text-yellow-400">Outdoor Space</span>
           </h1>
           <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#F5EFE0] mb-6">
             Digger & Driver Hire Available

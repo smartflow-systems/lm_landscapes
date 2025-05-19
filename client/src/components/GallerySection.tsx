@@ -4,8 +4,8 @@ import WaveDivider from './WaveDivider';
 
 const GallerySection = () => {
   return (
-    <section id="gallery" className="py-16 bg-secondary relative">
-      <div className="container mx-auto px-4">
+    <section id="gallery" className="bg-background">
+      <div className="container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <div className="text-center mb-12 md:mb-16">
           <span className="inline-block bg-primary text-white text-sm font-bold px-3 py-1 rounded-full mb-2">BEFORE & AFTER</span>
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Our Garden Transformations</h2>
@@ -13,7 +13,7 @@ const GallerySection = () => {
             Slide to see the dramatic difference our landscaping services can make to your outdoor space.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">
           {galleryItems.map((item) => (
             <div 
@@ -44,7 +44,7 @@ const GallerySection = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="mt-14 text-center">
           <a 
             href="#contact" 
@@ -56,7 +56,7 @@ const GallerySection = () => {
           <p className="text-accent mt-4 text-sm">No obligation free consultations and quotes available</p>
         </div>
       </div>
-      
+
       <div className="absolute bottom-0 left-0 right-0">
         <WaveDivider position="bottom" color="primary" />
       </div>
