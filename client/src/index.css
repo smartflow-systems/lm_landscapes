@@ -108,12 +108,12 @@
 
 @layer components {
   .wave-divider {
-    @apply relative h-[70px] bg-transparent;
+    @apply relative h-[70px] bg-transparent w-full;
   }
   
   .wave-divider::before {
     content: '';
-    @apply absolute block left-0 w-full h-[70px] bg-no-repeat bg-cover z-10;
+    @apply absolute block left-0 w-full h-[70px] bg-no-repeat bg-[length:100%_100%] z-10;
   }
   
   .wave-divider-secondary::before {
