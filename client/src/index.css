@@ -79,6 +79,27 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Smooth scrolling and touch optimizations */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  /* Fix mobile viewport issues */
+  @supports (-webkit-touch-callout: none) {
+    .min-h-screen {
+      min-height: -webkit-fill-available;
+    }
   }
 
   body {
@@ -149,13 +170,56 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('@assets/IMG_20250516_183911_634.jpg');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
     min-height: 100vh;
+    width: 100%;
   }
   
-  /* Mobile optimizations */
+  /* Desktop optimizations */
+  @media (min-width: 769px) {
+    .hero-overlay {
+      background-attachment: fixed;
+    }
+  }
+  
+  /* Mobile specific fixes */
   @media (max-width: 768px) {
     .hero-overlay {
       background-attachment: scroll;
+      background-size: cover;
+      background-position: center center;
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
+  }
+  
+  /* Extra small devices */
+  @media (max-width: 480px) {
+    .hero-overlay {
+      background-position: center 30%;
+      background-size: cover;
+    }
+    
+    /* Ensure buttons and text are properly sized */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  /* Optimize image loading and prevent layout shift */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Better button touch targets on mobile */
+  @media (max-width: 768px) {
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
     }
   }
 
