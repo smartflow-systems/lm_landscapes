@@ -71,14 +71,14 @@ const Navbar = () => {
       </div>
       
       {/* Mobile Navigation */}
-      <div className={cn("md:hidden bg-primary text-white shadow-lg", isMobileMenuOpen ? "block" : "hidden")}>
-        <div className="container mx-auto px-4 py-3 flex flex-col space-y-3">
-          <a href="#home" className="py-3 text-center border-b border-green-800 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Home</a>
-          <a href="#services" className="py-3 text-center border-b border-green-800 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Services</a>
-          <a href="#about" className="py-3 text-center border-b border-green-800 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>About</a>
-          <a href="#gallery" className="py-3 text-center border-b border-green-800 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Gallery</a>
-          <a href="#testimonials" className="py-3 text-center border-b border-green-800 hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Testimonials</a>
-          <a href="#contact" className="py-3 text-center hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Contact</a>
+      <div className={cn("md:hidden bg-primary text-white shadow-lg transition-all duration-300", isMobileMenuOpen ? "block" : "hidden")}>
+        <div className="container mx-auto px-4 py-4 flex flex-col">
+          <a href="#home" className="py-4 text-center text-lg border-b border-green-800 hover:text-yellow-400 hover:bg-green-800/30 transition-all duration-300 touch-manipulation" onClick={handleNavLinkClick}>Home</a>
+          <a href="#services" className="py-4 text-center text-lg border-b border-green-800 hover:text-yellow-400 hover:bg-green-800/30 transition-all duration-300 touch-manipulation" onClick={handleNavLinkClick}>Services</a>
+          <a href="#about" className="py-4 text-center text-lg border-b border-green-800 hover:text-yellow-400 hover:bg-green-800/30 transition-all duration-300 touch-manipulation" onClick={handleNavLinkClick}>About</a>
+          <a href="#gallery" className="py-4 text-center text-lg border-b border-green-800 hover:text-yellow-400 hover:bg-green-800/30 transition-all duration-300 touch-manipulation" onClick={handleNavLinkClick}>Gallery</a>
+          <a href="#testimonials" className="py-4 text-center text-lg border-b border-green-800 hover:text-yellow-400 hover:bg-green-800/30 transition-all duration-300 touch-manipulation" onClick={handleNavLinkClick}>Testimonials</a>
+          <a href="#contact" className="py-4 text-center text-lg hover:text-yellow-400 hover:bg-green-800/30 transition-all duration-300 touch-manipulation" onClick={handleNavLinkClick}>Contact</a>
         </div>
       </div>
     </nav>
