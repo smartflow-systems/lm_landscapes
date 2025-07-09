@@ -37,6 +37,11 @@
   /* Additional brand colors */
   --purple: 260 30% 50%; /* #7D5BA6 - purple accent */
   --yellow: 45 100% 70%; /* #FFD966 - yellow accent */
+  
+  /* Bubble design colors */
+  --bubble-green: 98 22% 19%; /* Same as primary */
+  --bubble-cream: 38 55% 92%; /* Same as secondary */
+  --main-bg: 38 40% 85%; /* Slightly darker cream for main background */
 
   --radius: 0.5rem;
 }
@@ -220,6 +225,50 @@
     button, a {
       min-height: 44px;
       min-width: 44px;
+    }
+  }
+  
+  /* Bubble design utilities */
+  .bubble-section {
+    background: hsl(var(--bubble-green));
+    border-radius: 50px;
+    padding: 2rem;
+    margin: 1rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.05);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .bubble-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 12px 24px rgba(0, 0, 0, 0.08);
+  }
+  
+  .bubble-content {
+    background: hsl(var(--bubble-cream));
+    border-radius: 40px;
+    padding: 2.5rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.3);
+  }
+  
+  .main-background {
+    background: hsl(var(--main-bg));
+    min-height: 100vh;
+  }
+  
+  @media (max-width: 768px) {
+    .bubble-section {
+      margin: 0.5rem;
+      padding: 1.5rem;
+      border-radius: 30px;
+    }
+    
+    .bubble-content {
+      padding: 1.5rem;
+      border-radius: 25px;
     }
   }
 

@@ -15,14 +15,24 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden main-background">
       <Navbar />
       <HeroSection />
-      <ServicesSection />
-      <AboutSection />
-      <GallerySection />
-      <TestimonialsSection />
-      <ContactSection />
+      <div className="py-8">
+        <ServicesSection />
+      </div>
+      <div className="py-8">
+        <AboutSection />
+      </div>
+      <div className="py-8">
+        <GallerySection />
+      </div>
+      <div className="py-8">
+        <TestimonialsSection />
+      </div>
+      <div className="py-8">
+        <ContactSection />
+      </div>
       <Footer />
     </div>
   );

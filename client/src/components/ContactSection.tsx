@@ -117,18 +117,21 @@ const ContactSection = () => {
   };
   
   return (
-    <section id="contact" className="py-16 bg-secondary relative">
+    <section id="contact" className="py-0">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Get In Touch</h2>
-          <p className="text-accent max-w-2xl mx-auto">
-            Contact us today for a free quote or to discuss your landscaping needs.
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bubble-section">
+          <div className="bubble-content">
+            <div className="text-center mb-16">
+              <span className="inline-block bg-primary text-white text-sm font-bold px-3 py-1 rounded-full mb-2">CONTACT US</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Get In Touch</h2>
+              <p className="text-accent max-w-2xl mx-auto">
+                Contact us today for a free quote or to discuss your landscaping needs.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <div className="bg-white rounded-lg shadow-lg p-8">
               <h3 className="text-2xl font-semibold text-primary mb-6">Request a Free Quote</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -278,6 +281,8 @@ const ContactSection = () => {
                   title="Service Area Map"
                 ></iframe>
               </div>
+            </div>
+          </div>
             </div>
           </div>
         </div>
