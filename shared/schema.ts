@@ -115,5 +115,59 @@ export type InsertProjectUpdate = z.infer<typeof projectUpdateSchema>;
 export type MaintenanceSchedule = typeof maintenanceSchedules.$inferSelect;
 export type InsertMaintenanceSchedule = z.infer<typeof maintenanceScheduleSchema>;
 
+// Sustainability assessments table
+export const sustainabilityAssessments = pgTable("sustainability_assessments", {
+  id: serial("id").primaryKey(),
+  projectId: integer("project_id").references(() => projects.id),
+  overallScore: integer("overall_score").notNull(), // 1-100 sustainability score
+  waterEfficiencyScore: integer("water_efficiency_score").notNull(),
+  biodiversityScore: integer("biodiversity_score").notNull(),
+  carbonFootprintScore: integer("carbon_footprint_score").notNull(),
+  soilHealthScore: integer("soil_health_score").notNull(),
+  wasteReductionScore: integer("waste_reduction_score").notNull(),
+  
+  // Specific eco-friendly features
+  nativePlants: boolean("native_plants").default(false),
+  droughtResistantPlants: boolean("drought_resistant_plants").default(false),
+  rainwaterHarvesting: boolean("rainwater_harvesting").default(false),
+  solarLighting: boolean("solar_lighting").default(false),
+  compostSystem: boolean("compost_system").default(false),
+  permaculture: boolean("permaculture").default(false),
+  organicMaterials: boolean("organic_materials").default(false),
+  wildlifeHabitat: boolean("wildlife_habitat").default(false),
+  
+  // Additional details
+  recommendations: text("recommendations"),
+  improvementSuggestions: text("improvement_suggestions"),
+  certificationLevel: varchar("certification_level", { length: 50 }), // Bronze, Silver, Gold, Platinum
+  
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const sustainabilityAssessmentSchema = createInsertSchema(sustainabilityAssessments).pick({
+  projectId: true,
+  overallScore: true,
+  waterEfficiencyScore: true,
+  biodiversityScore: true,
+  carbonFootprintScore: true,
+  soilHealthScore: true,
+  wasteReductionScore: true,
+  nativePlants: true,
+  droughtResistantPlants: true,
+  rainwaterHarvesting: true,
+  solarLighting: true,
+  compostSystem: true,
+  permaculture: true,
+  organicMaterials: true,
+  wildlifeHabitat: true,
+  recommendations: true,
+  improvementSuggestions: true,
+  certificationLevel: true,
+});
+
+export type SustainabilityAssessment = typeof sustainabilityAssessments.$inferSelect;
+export type InsertSustainabilityAssessment = z.infer<typeof sustainabilityAssessmentSchema>;
+
 // Import booking-related schemas
 export * from './booking-schema';

@@ -10,6 +10,7 @@ import Portal from "@/pages/Portal";
 import ProjectsList from "@/pages/ProjectsList";
 import MaintenancePage from "@/pages/MaintenancePage";
 import Booking from "@/pages/Booking";
+import SustainabilityPage from "@/pages/SustainabilityPage";
 import ChatBot from "@/components/ChatBot";
 
 function Router() {
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/portal" component={Portal} />
       <Route path="/portal/projects" component={ProjectsList} />
       <Route path="/portal/maintenance" component={MaintenancePage} />
+      <Route path="/portal/sustainability" component={SustainabilityPage} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
