@@ -45,7 +45,7 @@ const Footer = () => {
             <h3 className="font-semibold text-xl mb-6">Services</h3>
             <ul className="space-y-3">
               <li><a href="#services" className="hover:text-yellow-400 transition-colors duration-300">Digger & Driver Hire</a></li>
-              <li><a href="#services" className="hover:text-yellow-400 transition-colors duration-300">Fencing & Decking</a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/18006545084768921/" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors duration-300">Fencing & Decking</a></li>
               <li><a href="#services" className="hover:text-yellow-400 transition-colors duration-300">Outdoor Lighting</a></li>
               <li><a href="#services" className="hover:text-yellow-400 transition-colors duration-300">Garden Maintenance</a></li>
               <li><a href="#services" className="hover:text-yellow-400 transition-colors duration-300">Landscape Design</a></li>
