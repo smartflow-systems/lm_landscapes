@@ -15,11 +15,11 @@ const TestimonialsSection = () => {
   };
   
   return (
-    <section id="testimonials" className="py-0">
-      <div className="container mx-auto px-4">
+    <section id="testimonials" className="py-0 overflow-hidden">
+      <div className="container mx-auto px-4 max-w-full">
         <div className="bubble-section">
           <div className="bubble-content">
-            <div className="text-center mb-10 md:mb-16">
+            <div className="text-center mb-6 sm:mb-10 md:mb-16">
               <span className="inline-block bg-primary text-white text-sm font-bold px-3 py-1 rounded-full mb-2">TESTIMONIALS</span>
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">What Our Clients Say</h2>
               <p className="max-w-2xl mx-auto text-accent">

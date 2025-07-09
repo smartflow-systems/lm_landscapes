@@ -113,11 +113,11 @@ const ContactSection = () => {
   };
   
   return (
-    <section id="contact" className="py-0">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-0 overflow-hidden">
+      <div className="container mx-auto px-4 max-w-full">
         <div className="bubble-section">
           <div className="bubble-content">
-            <div className="text-center mb-16">
+            <div className="text-center mb-8 sm:mb-12 md:mb-16">
               <span className="inline-block bg-primary text-white text-sm font-bold px-3 py-1 rounded-full mb-2">CONTACT US</span>
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Get In Touch</h2>
               <p className="text-accent max-w-2xl mx-auto">
@@ -125,13 +125,13 @@ const ContactSection = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
               <div>
                 <div className="bg-white rounded-lg shadow-lg p-8">
               <h3 className="text-2xl font-semibold text-primary mb-6">Request a Free Quote</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label htmlFor="name" className="block text-darkgray mb-2">Full Name</label>
                     <Input
