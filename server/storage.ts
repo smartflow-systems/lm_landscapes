@@ -349,15 +349,15 @@ export class DbStorage implements IStorage {
     
     try {
       const result = await pool.query(
-        'INSERT INTO bookings (name, email, phone, service, appointment_date, time_slot, message, status, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
+        'INSERT INTO bookings (customer_name, customer_email, customer_phone, service_type, appointment_date, duration, notes, status, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
         [
-          booking.name,
-          booking.email,
-          booking.phone,
-          booking.service,
+          booking.customerName,
+          booking.customerEmail,
+          booking.customerPhone,
+          booking.serviceType,
           booking.appointmentDate,
-          booking.timeSlot,
-          booking.message,
+          booking.duration,
+          booking.notes,
           'pending',
           new Date(),
           new Date()
