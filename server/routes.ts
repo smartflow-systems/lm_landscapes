@@ -5,6 +5,7 @@ import { contactSchema, projectSchema, projectUpdateSchema, maintenanceScheduleS
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
 import { generateChatResponse } from "./openai";
+import { sendBookingConfirmation } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission endpoint
@@ -201,8 +202,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = bookingSchema.parse(req.body);
       const booking = await storage.createBooking(validatedData);
       
-      // Here you could integrate with Google Calendar API
-      // For now, we'll just store the booking
+      // Send confirmation email
+      try {
+        await sendBookingConfirmation({
+          customerName: validatedData.customerName,
+          customerEmail: validatedData.customerEmail,
+          serviceType: validatedData.serviceType,
+          appointmentDate: validatedData.appointmentDate.toISOString(),
+          duration: validatedData.duration,
+          notes: validatedData.notes,
+        });
+      } catch (emailError) {
+        console.error('Email sending failed, but booking was created:', emailError);
+      }
       
       res.json({ success: true, booking });
     } catch (error) {

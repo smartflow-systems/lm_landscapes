@@ -100,8 +100,13 @@ const Booking = () => {
       appointmentDateTime.setHours(parseInt(hours), parseInt(minutes));
       
       const bookingData = {
-        ...formData,
+        customerName: formData.customerName,
+        customerEmail: formData.customerEmail,
+        customerPhone: formData.customerPhone,
+        serviceType: formData.serviceType,
         appointmentDate: appointmentDateTime.toISOString(),
+        duration: formData.duration,
+        notes: formData.notes,
       };
       
       await apiRequest('/api/bookings', {
