@@ -20,7 +20,7 @@ const Footer = () => {
               <a href="#" className="text-white hover:text-yellow-400 transition-colors" aria-label="Facebook">
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="#" className="text-white hover:text-yellow-400 transition-colors" aria-label="Instagram">
+              <a href="https://www.instagram.com/l_m__landscape_maintenance_/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-400 transition-colors" aria-label="Instagram">
                 <i className="fab fa-instagram"></i>
               </a>
               <a href="#" className="text-white hover:text-yellow-400 transition-colors" aria-label="Twitter">
@@ -44,12 +44,12 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-xl mb-6">Services</h3>
             <ul className="space-y-3">
-              <li><a href="#services" className="hover:text-yellow-400 transition-colors duration-300">Digger & Driver Hire</a></li>
-              <li><a href="#services" className="hover:text-yellow-400 transition-colors duration-300">Fencing & Decking</a></li>
+              <li><a href="https://www.instagram.com/p/DJtp5FvMksn/" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors duration-300">Digger & Driver Hire</a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/18006545084768921/" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors duration-300">Fencing & Decking</a></li>
               <li><a href="#services" className="hover:text-yellow-400 transition-colors duration-300">Outdoor Lighting</a></li>
-              <li><a href="#services" className="hover:text-yellow-400 transition-colors duration-300">Garden Maintenance</a></li>
-              <li><a href="#services" className="hover:text-yellow-400 transition-colors duration-300">Landscape Design</a></li>
-              <li><a href="#services" className="hover:text-yellow-400 transition-colors duration-300">Driveways & Patios</a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/18033943826658480/" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors duration-300">Garden Maintenance</a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/18012124910744438/" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors duration-300">Landscape Design</a></li>
+              <li><a href="https://www.instagram.com/stories/highlights/18042049373557435/" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors duration-300">Driveways & Patios</a></li>
             </ul>
           </div>
           
