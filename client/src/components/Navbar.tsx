@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'wouter';
 import { cn } from '@/lib/utils';
+import logoImage from '@assets/image_1752028917776.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,7 +40,7 @@ const Navbar = () => {
           {/* Logo Container */}
           <div className="h-14 w-14 rounded-full overflow-hidden">
             <img 
-              src="@assets/IMG_20250516_183911_634.jpg" 
+              src={logoImage} 
               alt="L&M Logo" 
               className="w-full h-full object-cover"
             />
