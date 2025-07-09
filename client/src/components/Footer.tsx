@@ -65,6 +65,10 @@ const Footer = () => {
                 <span>info@landmlandscapes.co.uk</span>
               </li>
               <li className="flex items-center">
+                <i className="fas fa-map-marker-alt mr-3 text-yellow-400"></i>
+                <span>Manchester Failsworth</span>
+              </li>
+              <li className="flex items-center">
                 <i className="fas fa-clock mr-3 text-yellow-400"></i>
                 <span>Mon-Sat: 8am-6pm</span>
               </li>
