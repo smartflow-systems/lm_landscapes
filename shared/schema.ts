@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, varchar, date, decimal } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -39,3 +39,78 @@ export const contactSchema = z.object({
 
 export type ContactRequest = typeof contactRequests.$inferSelect;
 export type InsertContactRequest = z.infer<typeof contactSchema>;
+
+// Projects table for tracking client projects
+export const projects = pgTable("projects", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  title: varchar("title", { length: 200 }).notNull(),
+  description: text("description"),
+  serviceType: varchar("service_type", { length: 100 }).notNull(),
+  status: varchar("status", { length: 50 }).notNull().default("quote_requested"),
+  startDate: date("start_date"),
+  endDate: date("end_date"),
+  estimatedCost: decimal("estimated_cost", { precision: 10, scale: 2 }),
+  actualCost: decimal("actual_cost", { precision: 10, scale: 2 }),
+  notes: text("notes"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Project updates for tracking progress
+export const projectUpdates = pgTable("project_updates", {
+  id: serial("id").primaryKey(),
+  projectId: integer("project_id").references(() => projects.id).notNull(),
+  title: varchar("title", { length: 200 }).notNull(),
+  description: text("description").notNull(),
+  status: varchar("status", { length: 50 }).notNull(),
+  photos: text("photos").array(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Maintenance schedules for recurring services
+export const maintenanceSchedules = pgTable("maintenance_schedules", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  serviceType: varchar("service_type", { length: 100 }).notNull(),
+  frequency: varchar("frequency", { length: 50 }).notNull(), // weekly, monthly, quarterly, annually
+  nextDate: date("next_date").notNull(),
+  description: text("description"),
+  isActive: boolean("is_active").default(true).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Schema validations for new tables
+export const projectSchema = createInsertSchema(projects).pick({
+  title: true,
+  description: true,
+  serviceType: true,
+  status: true,
+  startDate: true,
+  endDate: true,
+  estimatedCost: true,
+  notes: true,
+});
+
+export const projectUpdateSchema = createInsertSchema(projectUpdates).pick({
+  title: true,
+  description: true,
+  status: true,
+  photos: true,
+});
+
+export const maintenanceScheduleSchema = createInsertSchema(maintenanceSchedules).pick({
+  serviceType: true,
+  frequency: true,
+  nextDate: true,
+  description: true,
+});
+
+// Types for new tables
+export type Project = typeof projects.$inferSelect;
+export type InsertProject = z.infer<typeof projectSchema>;
+export type ProjectUpdate = typeof projectUpdates.$inferSelect;
+export type InsertProjectUpdate = z.infer<typeof projectUpdateSchema>;
+export type MaintenanceSchedule = typeof maintenanceSchedules.$inferSelect;
+export type InsertMaintenanceSchedule = z.infer<typeof maintenanceScheduleSchema>;
