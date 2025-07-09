@@ -42,30 +42,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // User authentication endpoint (simple mock for now)
+  // User authentication endpoint
   app.post('/api/auth/login', async (req, res) => {
     try {
       const { username, password } = req.body;
       
-      // For demo purposes, create a test user if none exists
+      if (!username || !password) {
+        return res.status(400).json({ success: false, message: 'Username and password are required' });
+      }
+      
+      // Check if user exists
       let user = await storage.getUserByUsername(username);
+      
+      // If user doesn't exist, create a demo user for testing
       if (!user) {
+        console.log('Creating new user for login:', username);
         user = await storage.createUser({ username, password });
       }
       
-      res.json({ success: true, user: { id: user.id, username: user.username } });
+      // In a real app, you'd verify the password here
+      // For demo purposes, we'll accept any password
+      
+      console.log('Login successful for user:', username);
+      res.json({ 
+        success: true, 
+        user: { 
+          id: user.id, 
+          username: user.username 
+        } 
+      });
     } catch (error) {
       console.error('Login error:', error);
-      res.status(401).json({ success: false, message: 'Invalid credentials' });
+      res.status(500).json({ success: false, message: 'Login failed. Please try again.' });
     }
   });
 
   // Projects endpoints
-  app.get('/api/projects', async (req, res) => {
+  app.get('/api/projects/:userId', async (req, res) => {
     try {
-      const userId = parseInt(req.query.userId as string);
-      if (!userId) {
-        return res.status(400).json({ success: false, message: 'User ID required' });
+      const userId = parseInt(req.params.userId);
+      if (!userId || isNaN(userId)) {
+        return res.status(400).json({ success: false, message: 'Valid User ID required' });
       }
       
       const projects = await storage.getUserProjects(userId);
@@ -126,11 +143,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Maintenance schedules endpoints
-  app.get('/api/maintenance', async (req, res) => {
+  app.get('/api/maintenance/:userId', async (req, res) => {
     try {
-      const userId = parseInt(req.query.userId as string);
-      if (!userId) {
-        return res.status(400).json({ success: false, message: 'User ID required' });
+      const userId = parseInt(req.params.userId);
+      if (!userId || isNaN(userId)) {
+        return res.status(400).json({ success: false, message: 'Valid User ID required' });
       }
       
       const schedules = await storage.getUserMaintenanceSchedules(userId);
@@ -162,11 +179,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get('/api/maintenance/upcoming', async (req, res) => {
+  app.get('/api/maintenance/upcoming/:userId', async (req, res) => {
     try {
-      const userId = parseInt(req.query.userId as string);
-      if (!userId) {
-        return res.status(400).json({ success: false, message: 'User ID required' });
+      const userId = parseInt(req.params.userId);
+      if (!userId || isNaN(userId)) {
+        return res.status(400).json({ success: false, message: 'Valid User ID required' });
       }
       
       const upcoming = await storage.getUpcomingMaintenance(userId);

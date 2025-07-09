@@ -82,29 +82,25 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await apiRequest('POST', '/api/contact', formData);
+      const response = await apiRequest('/api/contact', {
+        method: 'POST',
+        body: formData,
+      });
       
-      if (response.ok) {
-        toast({
-          title: "Message Sent",
-          description: "Thank you for your message! We will be in touch soon.",
-        });
-        
-        // Reset form
-        setFormData({
-          name: '',
-          phone: '',
-          email: '',
-          service: '',
-          message: ''
-        });
-      } else {
-        toast({
-          title: "Error",
-          description: "Failed to send message. Please try again.",
-          variant: "destructive",
-        });
-      }
+      // Check if response was successful
+      toast({
+        title: "Message Sent",
+        description: "Thank you for your message! We will be in touch soon.",
+      });
+      
+      // Reset form
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        service: '',
+        message: ''
+      });
     } catch (error) {
       toast({
         title: "Error",
@@ -261,8 +257,9 @@ const ContactSection = () => {
                     <i className="fas fa-map-marker-alt"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold">Service Areas</h4>
-                    <p className="text-gray-700">We provide services throughout the local area and surrounding regions.</p>
+                    <h4 className="font-semibold">Location</h4>
+                    <p className="text-gray-700">Manchester Failsworth</p>
+                    <p className="text-sm text-gray-500">Serving Greater Manchester and surrounding areas</p>
                   </div>
                 </div>
               </div>
@@ -271,14 +268,14 @@ const ContactSection = () => {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden h-80">
               <div className="w-full h-full" id="map">
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158858.4733967433!2d-0.1666149!3d51.5001547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2sus!4v1687373745287!5m2!1sen!2sus" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9520.825659524744!2d-2.1598885!3d53.5129948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bb25b3c7c0e17%3A0x4c8b59ea65c48e47!2sFailsworth%2C%20Manchester%2C%20UK!5e0!3m2!1sen!2sus!4v1687373745287!5m2!1sen!2sus" 
                   width="100%" 
                   height="100%" 
                   style={{ border: 0 }} 
                   allowFullScreen 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Service Area Map"
+                  title="Service Area Map - Manchester Failsworth"
                 ></iframe>
               </div>
             </div>

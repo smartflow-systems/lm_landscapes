@@ -347,6 +347,90 @@ export class MemStorage implements IStorage {
     this.projectId = 1;
     this.updateId = 1;
     this.scheduleId = 1;
+    
+    // Add sample data for testing
+    this.initializeSampleData();
+  }
+  
+  private initializeSampleData() {
+    // Create a test user
+    const testUser: User = {
+      id: 1,
+      username: 'demo',
+      password: 'demo',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    this.users.set(1, testUser);
+    this.currentId = 2;
+    
+    // Add sample projects
+    const sampleProjects: Project[] = [
+      {
+        id: 1,
+        userId: 1,
+        title: 'Front Garden Landscaping',
+        serviceType: 'Full Landscape Design',
+        description: 'Complete redesign of front garden including new lawn, flower beds, and pathway',
+        status: 'in_progress',
+        startDate: new Date('2025-01-15'),
+        endDate: new Date('2025-02-15'),
+        estimatedCost: 2500,
+        notes: 'Client wants low-maintenance plants',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 2,
+        userId: 1,
+        title: 'Back Garden Fence Installation',
+        serviceType: 'Fencing, Sleepers & Decking',
+        description: 'Install new wooden fence panels around back garden perimeter',
+        status: 'completed',
+        startDate: new Date('2024-12-01'),
+        endDate: new Date('2024-12-10'),
+        estimatedCost: 800,
+        notes: 'Completed ahead of schedule',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ];
+    
+    sampleProjects.forEach(project => {
+      this.projects.set(project.id, project);
+    });
+    this.projectId = 3;
+    
+    // Add sample maintenance schedules
+    const sampleSchedules: MaintenanceSchedule[] = [
+      {
+        id: 1,
+        userId: 1,
+        serviceType: 'Garden Maintenance',
+        frequency: 'monthly',
+        nextDate: new Date('2025-02-01'),
+        description: 'Regular lawn mowing and hedge trimming',
+        isActive: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 2,
+        userId: 1,
+        serviceType: 'Gutter Cleaning',
+        frequency: 'quarterly',
+        nextDate: new Date('2025-03-15'),
+        description: 'Clean and inspect gutters',
+        isActive: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ];
+    
+    sampleSchedules.forEach(schedule => {
+      this.maintenanceSchedules.set(schedule.id, schedule);
+    });
+    this.scheduleId = 3;
   }
 
   async getUser(id: number): Promise<User | undefined> {
