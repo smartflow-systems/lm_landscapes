@@ -1,6 +1,5 @@
 import { galleryItems } from '@/data/gallery';
 import BeforeAfterSlider from './BeforeAfterSlider';
-import WaveDivider from './WaveDivider';
 
 const GallerySection = () => {
   return (
@@ -57,9 +56,7 @@ const GallerySection = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0">
-        <WaveDivider position="bottom" color="primary" />
-      </div>
+      
     </section>
   );
 };

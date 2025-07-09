@@ -1,5 +1,4 @@
 import { services } from '@/data/services';
-import WaveDivider from './WaveDivider';
 
 const ServicesSection = () => {
   return (
@@ -59,9 +58,7 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0">
-        <WaveDivider position="bottom" color="primary" />
-      </div>
+      
     </section>
   );
 };
