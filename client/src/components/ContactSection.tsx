@@ -247,7 +247,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold">Email</h4>
-                    <p className="text-lg text-primary">info@landmlandscapes.co.uk</p>
+                    <p className="text-lg text-primary">lmlandsm@gmail.com</p>
                     <p className="text-sm text-gray-500">We'll respond within 24 hours</p>
                   </div>
                 </div>
