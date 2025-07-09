@@ -75,7 +75,7 @@ export async function sendBookingConfirmation(booking: BookingEmailData): Promis
             <p>If you need to reschedule or have any questions, please contact us:</p>
             <ul>
               <li><strong>Phone:</strong> 07542 331 653</li>
-              <li><strong>Email:</strong> info@landmlandscapes.co.uk</li>
+              <li><strong>Email:</strong> lmlandsm@gmail.com</li>
             </ul>
             
             <p>Thank you for choosing L&M Landscape Maintenance!</p>
@@ -85,7 +85,7 @@ export async function sendBookingConfirmation(booking: BookingEmailData): Promis
           
           <div style="background-color: #2d5016; color: white; padding: 15px; text-align: center; font-size: 12px;">
             <p>L&M Landscape Maintenance | Manchester Failsworth</p>
-            <p>Phone: 07542 331 653 | Email: info@landmlandscapes.co.uk</p>
+            <p>Phone: 07542 331 653 | Email: lmlandsm@gmail.com</p>
           </div>
         </div>
       `,
