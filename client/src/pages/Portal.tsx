@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, Clock, FileText, Settings, LogOut, Home } from 'lucide-react';
+import { Calendar, Clock, FileText, Settings, LogOut, Home, Leaf } from 'lucide-react';
 import { format } from 'date-fns';
 import logoImage from '@assets/image_1752028917776.png';
 import type { Project, MaintenanceSchedule } from '@shared/schema';
@@ -278,6 +278,14 @@ export default function Portal() {
             onClick={() => setLocation('/portal/maintenance')}
           >
             Manage Maintenance
+          </Button>
+          <Button 
+            variant="outline"
+            className="border-green-600 text-green-600 hover:bg-green-50 flex items-center space-x-2"
+            onClick={() => setLocation('/portal/sustainability')}
+          >
+            <Leaf className="h-4 w-4" />
+            <span>Sustainability Scoring</span>
           </Button>
         </div>
       </main>

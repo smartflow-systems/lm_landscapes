@@ -12,7 +12,9 @@ import {
   type Booking,
   type InsertBooking,
   type ChatMessage,
-  type InsertChatMessage
+  type InsertChatMessage,
+  type SustainabilityAssessment,
+  type InsertSustainabilityAssessment
 } from "@shared/schema";
 import { Pool } from "pg";
 
@@ -72,6 +74,12 @@ export interface IStorage {
   // Chat messages
   saveChatMessage(message: InsertChatMessage): Promise<ChatMessage>;
   getChatHistory(sessionId: string, limit?: number): Promise<ChatMessage[]>;
+  
+  // Sustainability assessments
+  createSustainabilityAssessment(assessment: InsertSustainabilityAssessment): Promise<SustainabilityAssessment>;
+  getSustainabilityAssessment(projectId: number): Promise<SustainabilityAssessment | undefined>;
+  updateSustainabilityAssessment(projectId: number, updates: Partial<InsertSustainabilityAssessment>): Promise<SustainabilityAssessment>;
+  calculateSustainabilityScore(features: Partial<InsertSustainabilityAssessment>): Promise<number>;
 }
 
 // Database implementation of storage interface
@@ -433,6 +441,114 @@ export class DbStorage implements IStorage {
       return [];
     }
   }
+
+  // Sustainability assessment methods
+  async createSustainabilityAssessment(assessment: InsertSustainabilityAssessment): Promise<SustainabilityAssessment> {
+    if (!pool) throw new Error("Database connection not available");
+    
+    try {
+      const result = await pool.query(
+        `INSERT INTO sustainability_assessments (
+          project_id, overall_score, water_efficiency_score, biodiversity_score, 
+          carbon_footprint_score, soil_health_score, waste_reduction_score,
+          native_plants, drought_resistant_plants, rainwater_harvesting, solar_lighting,
+          compost_system, permaculture, organic_materials, wildlife_habitat,
+          recommendations, improvement_suggestions, certification_level, created_at, updated_at
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) 
+        RETURNING *`,
+        [
+          assessment.projectId,
+          assessment.overallScore,
+          assessment.waterEfficiencyScore,
+          assessment.biodiversityScore,
+          assessment.carbonFootprintScore,
+          assessment.soilHealthScore,
+          assessment.wasteReductionScore,
+          assessment.nativePlants || false,
+          assessment.droughtResistantPlants || false,
+          assessment.rainwaterHarvesting || false,
+          assessment.solarLighting || false,
+          assessment.compostSystem || false,
+          assessment.permaculture || false,
+          assessment.organicMaterials || false,
+          assessment.wildlifeHabitat || false,
+          assessment.recommendations,
+          assessment.improvementSuggestions,
+          assessment.certificationLevel,
+          new Date(),
+          new Date()
+        ]
+      );
+      return result.rows[0];
+    } catch (error) {
+      console.error('Error creating sustainability assessment:', error);
+      throw error;
+    }
+  }
+
+  async getSustainabilityAssessment(projectId: number): Promise<SustainabilityAssessment | undefined> {
+    if (!pool) return undefined;
+    
+    try {
+      const result = await pool.query(
+        'SELECT * FROM sustainability_assessments WHERE project_id = $1',
+        [projectId]
+      );
+      return result.rows[0];
+    } catch (error) {
+      console.error('Error getting sustainability assessment:', error);
+      return undefined;
+    }
+  }
+
+  async updateSustainabilityAssessment(projectId: number, updates: Partial<InsertSustainabilityAssessment>): Promise<SustainabilityAssessment> {
+    if (!pool) throw new Error("Database connection not available");
+    
+    try {
+      const setClause = Object.keys(updates)
+        .map((key, index) => `${key} = $${index + 2}`)
+        .join(', ');
+      
+      const result = await pool.query(
+        `UPDATE sustainability_assessments SET ${setClause}, updated_at = $1 WHERE project_id = $${Object.keys(updates).length + 2} RETURNING *`,
+        [new Date(), ...Object.values(updates), projectId]
+      );
+      return result.rows[0];
+    } catch (error) {
+      console.error('Error updating sustainability assessment:', error);
+      throw error;
+    }
+  }
+
+  async calculateSustainabilityScore(features: Partial<InsertSustainabilityAssessment>): Promise<number> {
+    // Calculate overall sustainability score based on various factors
+    let score = 0;
+    
+    // Base scores for different categories (out of 100)
+    const waterScore = features.waterEfficiencyScore || 0;
+    const biodiversityScore = features.biodiversityScore || 0;
+    const carbonScore = features.carbonFootprintScore || 0;
+    const soilScore = features.soilHealthScore || 0;
+    const wasteScore = features.wasteReductionScore || 0;
+    
+    // Average of category scores
+    score = (waterScore + biodiversityScore + carbonScore + soilScore + wasteScore) / 5;
+    
+    // Bonus points for eco-friendly features (up to 20 points)
+    let bonusPoints = 0;
+    if (features.nativePlants) bonusPoints += 3;
+    if (features.droughtResistantPlants) bonusPoints += 3;
+    if (features.rainwaterHarvesting) bonusPoints += 4;
+    if (features.solarLighting) bonusPoints += 2;
+    if (features.compostSystem) bonusPoints += 3;
+    if (features.permaculture) bonusPoints += 2;
+    if (features.organicMaterials) bonusPoints += 2;
+    if (features.wildlifeHabitat) bonusPoints += 1;
+    
+    score = Math.min(100, score + bonusPoints);
+    
+    return Math.round(score);
+  }
 }
 
 // In-memory fallback implementation for development/testing
@@ -444,6 +560,7 @@ export class MemStorage implements IStorage {
   private maintenanceSchedules: Map<number, MaintenanceSchedule>;
   private bookings: Map<number, Booking>;
   private chatMessages: Map<number, ChatMessage>;
+  private sustainabilityAssessments: Map<number, SustainabilityAssessment>;
   currentId: number;
   contactRequestId: number;
   projectId: number;
@@ -451,6 +568,7 @@ export class MemStorage implements IStorage {
   scheduleId: number;
   bookingId: number;
   chatMessageId: number;
+  sustainabilityId: number;
 
   constructor() {
     this.users = new Map();
@@ -460,6 +578,7 @@ export class MemStorage implements IStorage {
     this.maintenanceSchedules = new Map();
     this.bookings = new Map();
     this.chatMessages = new Map();
+    this.sustainabilityAssessments = new Map();
     this.currentId = 1;
     this.contactRequestId = 1;
     this.projectId = 1;
@@ -467,6 +586,7 @@ export class MemStorage implements IStorage {
     this.scheduleId = 1;
     this.bookingId = 1;
     this.chatMessageId = 1;
+    this.sustainabilityId = 1;
     
     // Add sample data for testing
     this.initializeSampleData();
@@ -730,6 +850,65 @@ export class MemStorage implements IStorage {
       .filter(msg => msg.sessionId === sessionId)
       .sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime())
       .slice(-limit);
+  }
+
+  // Sustainability assessment methods
+  async createSustainabilityAssessment(assessment: InsertSustainabilityAssessment): Promise<SustainabilityAssessment> {
+    const id = this.sustainabilityId++;
+    const newAssessment: SustainabilityAssessment = {
+      ...assessment,
+      id,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    this.sustainabilityAssessments.set(id, newAssessment);
+    return newAssessment;
+  }
+
+  async getSustainabilityAssessment(projectId: number): Promise<SustainabilityAssessment | undefined> {
+    return Array.from(this.sustainabilityAssessments.values())
+      .find(assessment => assessment.projectId === projectId);
+  }
+
+  async updateSustainabilityAssessment(projectId: number, updates: Partial<InsertSustainabilityAssessment>): Promise<SustainabilityAssessment> {
+    const existing = Array.from(this.sustainabilityAssessments.values())
+      .find(assessment => assessment.projectId === projectId);
+    
+    if (!existing) throw new Error('Sustainability assessment not found');
+    
+    const updated = { ...existing, ...updates, updatedAt: new Date() };
+    this.sustainabilityAssessments.set(existing.id, updated);
+    return updated;
+  }
+
+  async calculateSustainabilityScore(features: Partial<InsertSustainabilityAssessment>): Promise<number> {
+    // Calculate overall sustainability score based on various factors
+    let score = 0;
+    
+    // Base scores for different categories (out of 100)
+    const waterScore = features.waterEfficiencyScore || 0;
+    const biodiversityScore = features.biodiversityScore || 0;
+    const carbonScore = features.carbonFootprintScore || 0;
+    const soilScore = features.soilHealthScore || 0;
+    const wasteScore = features.wasteReductionScore || 0;
+    
+    // Average of category scores
+    score = (waterScore + biodiversityScore + carbonScore + soilScore + wasteScore) / 5;
+    
+    // Bonus points for eco-friendly features (up to 20 points)
+    let bonusPoints = 0;
+    if (features.nativePlants) bonusPoints += 3;
+    if (features.droughtResistantPlants) bonusPoints += 3;
+    if (features.rainwaterHarvesting) bonusPoints += 4;
+    if (features.solarLighting) bonusPoints += 2;
+    if (features.compostSystem) bonusPoints += 3;
+    if (features.permaculture) bonusPoints += 2;
+    if (features.organicMaterials) bonusPoints += 2;
+    if (features.wildlifeHabitat) bonusPoints += 1;
+    
+    score = Math.min(100, score + bonusPoints);
+    
+    return Math.round(score);
   }
 }
 

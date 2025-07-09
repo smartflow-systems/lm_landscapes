@@ -269,6 +269,104 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Sustainability assessment endpoints
+  app.post('/api/projects/:id/sustainability', async (req, res) => {
+    try {
+      const projectId = parseInt(req.params.id);
+      const assessmentData = req.body;
+
+      // Calculate the overall score
+      const overallScore = await storage.calculateSustainabilityScore(assessmentData);
+      
+      // Determine certification level based on score
+      let certificationLevel = 'Bronze';
+      if (overallScore >= 90) certificationLevel = 'Platinum';
+      else if (overallScore >= 80) certificationLevel = 'Gold';
+      else if (overallScore >= 70) certificationLevel = 'Silver';
+
+      const assessment = await storage.createSustainabilityAssessment({
+        ...assessmentData,
+        projectId,
+        overallScore,
+        certificationLevel
+      });
+
+      res.json(assessment);
+    } catch (error) {
+      console.error('Error creating sustainability assessment:', error);
+      res.status(500).json({ error: 'Failed to create sustainability assessment' });
+    }
+  });
+
+  app.get('/api/projects/:id/sustainability', async (req, res) => {
+    try {
+      const projectId = parseInt(req.params.id);
+      const assessment = await storage.getSustainabilityAssessment(projectId);
+      
+      if (!assessment) {
+        return res.status(404).json({ error: 'Sustainability assessment not found' });
+      }
+      
+      res.json(assessment);
+    } catch (error) {
+      console.error('Error getting sustainability assessment:', error);
+      res.status(500).json({ error: 'Failed to get sustainability assessment' });
+    }
+  });
+
+  app.put('/api/projects/:id/sustainability', async (req, res) => {
+    try {
+      const projectId = parseInt(req.params.id);
+      const updates = req.body;
+
+      // Recalculate overall score if relevant fields changed
+      if (updates.waterEfficiencyScore || updates.biodiversityScore || 
+          updates.carbonFootprintScore || updates.soilHealthScore || 
+          updates.wasteReductionScore || updates.nativePlants !== undefined) {
+        updates.overallScore = await storage.calculateSustainabilityScore(updates);
+        
+        // Update certification level
+        if (updates.overallScore >= 90) updates.certificationLevel = 'Platinum';
+        else if (updates.overallScore >= 80) updates.certificationLevel = 'Gold';
+        else if (updates.overallScore >= 70) updates.certificationLevel = 'Silver';
+        else updates.certificationLevel = 'Bronze';
+      }
+
+      const assessment = await storage.updateSustainabilityAssessment(projectId, updates);
+      res.json(assessment);
+    } catch (error) {
+      console.error('Error updating sustainability assessment:', error);
+      res.status(500).json({ error: 'Failed to update sustainability assessment' });
+    }
+  });
+
+  app.post('/api/sustainability/calculate', async (req, res) => {
+    try {
+      const features = req.body;
+      const score = await storage.calculateSustainabilityScore(features);
+      
+      let certificationLevel = 'Bronze';
+      if (score >= 90) certificationLevel = 'Platinum';
+      else if (score >= 80) certificationLevel = 'Gold';
+      else if (score >= 70) certificationLevel = 'Silver';
+
+      res.json({ 
+        overallScore: score, 
+        certificationLevel,
+        breakdown: {
+          waterEfficiency: features.waterEfficiencyScore || 0,
+          biodiversity: features.biodiversityScore || 0,
+          carbonFootprint: features.carbonFootprintScore || 0,
+          soilHealth: features.soilHealthScore || 0,
+          wasteReduction: features.wasteReductionScore || 0
+        }
+      });
+    } catch (error) {
+      console.error('Error calculating sustainability score:', error);
+      res.status(500).json({ error: 'Failed to calculate sustainability score' });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
