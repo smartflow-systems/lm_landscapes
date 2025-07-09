@@ -11,7 +11,7 @@ const AboutSection = () => {
             Where passion for nature meets professional landscaping excellence
           </p>
         </div>
-      
+
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <div className="md:w-5/12 lg:w-1/2 order-2 md:order-1">
             <div className="bg-secondary/20 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-white/10">
@@ -24,34 +24,34 @@ const AboutSection = () => {
                 Our commitment to quality, attention to detail, and passion for landscaping ensures 
                 that every project we undertake exceeds expectations and creates Instagram-worthy spaces.
               </p>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                <div className="flex items-center bg-primary/40 p-3 rounded-lg backdrop-blur-sm">
+                <div className="flex items-center bg-primary/10 p-3 rounded-lg backdrop-blur-sm">
                   <div className="bg-yellow-400 h-8 w-8 rounded-full flex items-center justify-center mr-3 shrink-0">
                     <i className="fas fa-users text-primary"></i>
                   </div>
                   <span className="font-medium">Professional Team</span>
                 </div>
-                <div className="flex items-center bg-primary/40 p-3 rounded-lg backdrop-blur-sm">
+                <div className="flex items-center bg-primary/10 p-3 rounded-lg backdrop-blur-sm">
                   <div className="bg-yellow-400 h-8 w-8 rounded-full flex items-center justify-center mr-3 shrink-0">
                     <i className="fas fa-gem text-primary"></i>
                   </div>
                   <span className="font-medium">Quality Materials</span>
                 </div>
-                <div className="flex items-center bg-primary/40 p-3 rounded-lg backdrop-blur-sm">
+                <div className="flex items-center bg-primary/10 p-3 rounded-lg backdrop-blur-sm">
                   <div className="bg-yellow-400 h-8 w-8 rounded-full flex items-center justify-center mr-3 shrink-0">
                     <i className="fas fa-clock text-primary"></i>
                   </div>
                   <span className="font-medium">Timely Completion</span>
                 </div>
-                <div className="flex items-center bg-primary/40 p-3 rounded-lg backdrop-blur-sm">
+                <div className="flex items-center bg-primary/10 p-3 rounded-lg backdrop-blur-sm">
                   <div className="bg-yellow-400 h-8 w-8 rounded-full flex items-center justify-center mr-3 shrink-0">
                     <i className="fas fa-heart text-primary"></i>
                   </div>
                   <span className="font-medium">Customer Satisfaction</span>
                 </div>
               </div>
-              
+
               <a 
                 href="#contact" 
                 className="bg-yellow-400 hover:bg-white text-primary font-semibold px-6 py-3 rounded-full transition-all duration-300 inline-flex items-center shadow-lg"
@@ -61,7 +61,7 @@ const AboutSection = () => {
               </a>
             </div>
           </div>
-          
+
           <div className="md:w-7/12 lg:w-1/2 order-1 md:order-2 flex justify-center">
             <div className="relative">
               <div className="h-64 w-64 md:h-80 md:w-80 rounded-full bg-secondary border-4 border-yellow-400 flex items-center justify-center p-8 animate-float shadow-2xl relative z-10">
@@ -77,7 +77,7 @@ const AboutSection = () => {
                   <i className="fas fa-leaf text-primary text-5xl"></i>
                 </div>
               </div>
-              
+
               {/* Experience badge */}
               <div className="absolute -bottom-4 -right-4 bg-primary text-white px-4 py-2 rounded-lg shadow-lg border-2 border-yellow-400 z-20">
                 <span className="block text-xs font-semibold">TRUSTED BY</span>
@@ -87,7 +87,7 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="absolute bottom-0 left-0 right-0">
         <WaveDivider position="bottom" color="secondary" />
       </div>
