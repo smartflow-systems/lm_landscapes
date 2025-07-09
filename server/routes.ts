@@ -1,9 +1,10 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { contactSchema, projectSchema, projectUpdateSchema, maintenanceScheduleSchema } from "@shared/schema";
+import { contactSchema, projectSchema, projectUpdateSchema, maintenanceScheduleSchema, bookingSchema, chatMessageSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
+import { generateChatResponse } from "./openai";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission endpoint
@@ -191,6 +192,80 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error fetching upcoming maintenance:', error);
       res.status(500).json({ success: false, message: 'Failed to fetch upcoming maintenance' });
+    }
+  });
+
+  // Booking endpoints
+  app.post('/api/bookings', async (req, res) => {
+    try {
+      const validatedData = bookingSchema.parse(req.body);
+      const booking = await storage.createBooking(validatedData);
+      
+      // Here you could integrate with Google Calendar API
+      // For now, we'll just store the booking
+      
+      res.json({ success: true, booking });
+    } catch (error) {
+      if (error instanceof ZodError) {
+        const validationError = fromZodError(error);
+        return res.status(400).json({ success: false, message: validationError.message });
+      }
+      console.error('Error creating booking:', error);
+      res.status(500).json({ success: false, message: 'Failed to create booking' });
+    }
+  });
+
+  app.get('/api/bookings', async (req, res) => {
+    try {
+      const date = req.query.date ? new Date(req.query.date as string) : undefined;
+      const bookings = await storage.getBookings(date);
+      res.json({ success: true, bookings });
+    } catch (error) {
+      console.error('Error fetching bookings:', error);
+      res.status(500).json({ success: false, message: 'Failed to fetch bookings' });
+    }
+  });
+
+  // Chat endpoints
+  app.post('/api/chat', async (req, res) => {
+    try {
+      const { message, sessionId } = req.body;
+      
+      if (!message || !sessionId) {
+        return res.status(400).json({ success: false, message: 'Message and session ID are required' });
+      }
+
+      // Get conversation history
+      const history = await storage.getChatHistory(sessionId, 8);
+      const conversationHistory = history.map(msg => ({
+        role: msg.sender as 'user' | 'assistant',
+        content: msg.message
+      }));
+
+      // Save user message
+      await storage.saveChatMessage({
+        sessionId,
+        message,
+        sender: 'user'
+      });
+
+      // Generate AI response
+      const aiResponse = await generateChatResponse(message, conversationHistory);
+
+      // Save AI response
+      await storage.saveChatMessage({
+        sessionId,
+        message: aiResponse,
+        sender: 'assistant'
+      });
+
+      res.json({ success: true, message: aiResponse });
+    } catch (error) {
+      console.error('Error in chat endpoint:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: 'Sorry, I\'m having trouble responding right now. Please try again or call us at 07542 331 653.' 
+      });
     }
   });
 

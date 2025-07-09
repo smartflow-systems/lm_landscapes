@@ -6,14 +6,17 @@ This is a modern landscaping business website built with React and TypeScript. T
 
 ## Recent Changes
 
-**January 2025** - Implemented complete client portal system:
+**January 2025** - Implemented complete client portal system and booking features:
 - Added user authentication with login page
-- Created client portal dashboard with project and maintenance overview
+- Created client portal dashboard with project and maintenance overview  
 - Built projects list page with search and filtering capabilities
 - Created maintenance schedules page with status tracking
 - Added client portal navigation button to main website
 - Integrated user-provided logo throughout portal interface
 - All portal pages use bubble-based design consistent with main website
+- **NEW: Google Calendar booking system with on-page calendar interface**
+- **NEW: AI-powered chatbot with intelligent customer service capabilities**
+- **NEW: Book Now button in main navigation for easy appointment scheduling**
 
 ## User Preferences
 
@@ -50,12 +53,18 @@ Preferred communication style: Simple, everyday language.
 - **Form Handling**: Contact form with validation and toast notifications
 - **Client Portal**: Login page, dashboard, projects list, maintenance schedules
 - **Portal Navigation**: Client portal button in main navbar, seamless routing
+- **Booking System**: Full-page booking interface with calendar picker and time slots
+- **AI Chatbot**: Floating chat widget with intelligent customer service powered by OpenAI
+- **Enhanced Navigation**: Book Now button prominently displayed in navbar
 
 ### Backend Endpoints
 - `POST /api/contact` - Handles contact form submissions with validation
-- `POST /api/login` - Handles user authentication for client portal
+- `POST /api/auth/login` - Handles user authentication for client portal
 - `GET /api/projects/:userId` - Retrieves user's projects
 - `GET /api/maintenance/:userId` - Retrieves user's maintenance schedules
+- `POST /api/bookings` - Creates new appointment bookings with calendar integration
+- `GET /api/bookings` - Retrieves bookings (optionally filtered by date)
+- `POST /api/chat` - AI chatbot endpoint powered by OpenAI GPT-4o
 
 ### Database Schema
 - `users` table - Client authentication and profile information
@@ -63,6 +72,8 @@ Preferred communication style: Simple, everyday language.
 - `projects` table - Tracks client projects with status, dates, and details
 - `maintenance_schedules` table - Manages recurring maintenance appointments
 - `project_updates` table - Stores project progress updates and photos
+- `bookings` table - Stores appointment bookings with calendar integration
+- `chat_messages` table - Stores AI chatbot conversation history
 
 ## Data Flow
 

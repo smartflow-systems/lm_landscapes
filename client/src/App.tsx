@@ -9,11 +9,14 @@ import Login from "@/pages/Login";
 import Portal from "@/pages/Portal";
 import ProjectsList from "@/pages/ProjectsList";
 import MaintenancePage from "@/pages/MaintenancePage";
+import Booking from "@/pages/Booking";
+import ChatBot from "@/components/ChatBot";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/booking" component={Booking} />
       <Route path="/login" component={Login} />
       <Route path="/portal" component={Portal} />
       <Route path="/portal/projects" component={ProjectsList} />
@@ -30,6 +33,7 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <Router />
+        <ChatBot />
       </TooltipProvider>
     </QueryClientProvider>
   );
