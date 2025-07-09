@@ -1,10 +1,8 @@
-import { useEffect, useRef } from 'react';
 import LeafAnimation from './LeafAnimation';
-import WaveDivider from './WaveDivider';
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen bg-cover bg-center hero-overlay overflow-hidden">
+    <section id="home" className="relative min-h-screen bg-cover bg-center hero-overlay">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <LeafAnimation />
       </div>
@@ -38,8 +36,7 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-      
-      </section>
+    </section>
   );
 };
 
