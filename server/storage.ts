@@ -8,7 +8,11 @@ import {
   type ProjectUpdate,
   type InsertProjectUpdate,
   type MaintenanceSchedule,
-  type InsertMaintenanceSchedule
+  type InsertMaintenanceSchedule,
+  type Booking,
+  type InsertBooking,
+  type ChatMessage,
+  type InsertChatMessage
 } from "@shared/schema";
 import { Pool } from "pg";
 
@@ -59,6 +63,15 @@ export interface IStorage {
   getUserMaintenanceSchedules(userId: number): Promise<MaintenanceSchedule[]>;
   updateMaintenanceSchedule(id: number, updates: Partial<InsertMaintenanceSchedule>): Promise<MaintenanceSchedule>;
   getUpcomingMaintenance(userId: number): Promise<MaintenanceSchedule[]>;
+  
+  // Booking management
+  createBooking(booking: InsertBooking): Promise<Booking>;
+  getBookings(date?: Date): Promise<Booking[]>;
+  updateBooking(id: number, updates: Partial<InsertBooking>): Promise<Booking>;
+  
+  // Chat messages
+  saveChatMessage(message: InsertChatMessage): Promise<ChatMessage>;
+  getChatHistory(sessionId: string, limit?: number): Promise<ChatMessage[]>;
 }
 
 // Database implementation of storage interface
@@ -330,11 +343,15 @@ export class MemStorage implements IStorage {
   private projects: Map<number, Project>;
   private projectUpdates: Map<number, ProjectUpdate>;
   private maintenanceSchedules: Map<number, MaintenanceSchedule>;
+  private bookings: Map<number, Booking>;
+  private chatMessages: Map<number, ChatMessage>;
   currentId: number;
   contactRequestId: number;
   projectId: number;
   updateId: number;
   scheduleId: number;
+  bookingId: number;
+  chatMessageId: number;
 
   constructor() {
     this.users = new Map();
@@ -342,11 +359,15 @@ export class MemStorage implements IStorage {
     this.projects = new Map();
     this.projectUpdates = new Map();
     this.maintenanceSchedules = new Map();
+    this.bookings = new Map();
+    this.chatMessages = new Map();
     this.currentId = 1;
     this.contactRequestId = 1;
     this.projectId = 1;
     this.updateId = 1;
     this.scheduleId = 1;
+    this.bookingId = 1;
+    this.chatMessageId = 1;
     
     // Add sample data for testing
     this.initializeSampleData();
@@ -552,6 +573,64 @@ export class MemStorage implements IStorage {
       )
       .sort((a, b) => new Date(a.nextDate).getTime() - new Date(b.nextDate).getTime())
       .slice(0, 10);
+  }
+
+  // Booking methods
+  async createBooking(booking: InsertBooking): Promise<Booking> {
+    const id = this.bookingId++;
+    const newBooking: Booking = {
+      ...booking,
+      id,
+      status: 'pending',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    this.bookings.set(id, newBooking);
+    console.log('Booking created (in-memory storage):', newBooking);
+    return newBooking;
+  }
+
+  async getBookings(date?: Date): Promise<Booking[]> {
+    let bookings = Array.from(this.bookings.values());
+    
+    if (date) {
+      const targetDate = new Date(date).toDateString();
+      bookings = bookings.filter(booking => 
+        new Date(booking.appointmentDate).toDateString() === targetDate
+      );
+    }
+    
+    return bookings.sort((a, b) => 
+      new Date(a.appointmentDate).getTime() - new Date(b.appointmentDate).getTime()
+    );
+  }
+
+  async updateBooking(id: number, updates: Partial<InsertBooking>): Promise<Booking> {
+    const existing = this.bookings.get(id);
+    if (!existing) throw new Error('Booking not found');
+    
+    const updated = { ...existing, ...updates, updatedAt: new Date() };
+    this.bookings.set(id, updated);
+    return updated;
+  }
+
+  // Chat methods
+  async saveChatMessage(message: InsertChatMessage): Promise<ChatMessage> {
+    const id = this.chatMessageId++;
+    const newMessage: ChatMessage = {
+      ...message,
+      id,
+      timestamp: new Date()
+    };
+    this.chatMessages.set(id, newMessage);
+    return newMessage;
+  }
+
+  async getChatHistory(sessionId: string, limit: number = 10): Promise<ChatMessage[]> {
+    return Array.from(this.chatMessages.values())
+      .filter(msg => msg.sessionId === sessionId)
+      .sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime())
+      .slice(-limit);
   }
 }
 

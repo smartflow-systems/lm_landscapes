@@ -114,3 +114,6 @@ export type ProjectUpdate = typeof projectUpdates.$inferSelect;
 export type InsertProjectUpdate = z.infer<typeof projectUpdateSchema>;
 export type MaintenanceSchedule = typeof maintenanceSchedules.$inferSelect;
 export type InsertMaintenanceSchedule = z.infer<typeof maintenanceScheduleSchema>;
+
+// Import booking-related schemas
+export * from './booking-schema';

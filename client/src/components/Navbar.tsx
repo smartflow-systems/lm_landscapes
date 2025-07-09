@@ -59,11 +59,18 @@ const Navbar = () => {
           <a href="#gallery" className="hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Gallery</a>
           <a href="#testimonials" className="hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Testimonials</a>
           <a href="#contact" className="hover:text-yellow-400 transition-colors duration-300" onClick={handleNavLinkClick}>Contact</a>
-          <Link href="/login">
-            <button className="bg-white text-green-600 px-4 py-2 rounded-full font-semibold hover:bg-yellow-400 hover:text-green-800 transition-all duration-300 shadow-md">
-              Client Portal
-            </button>
-          </Link>
+          <div className="flex space-x-3">
+            <Link href="/booking">
+              <button className="bg-yellow-500 text-green-800 px-4 py-2 rounded-full font-semibold hover:bg-yellow-400 transition-all duration-300 shadow-md">
+                Book Now
+              </button>
+            </Link>
+            <Link href="/login">
+              <button className="bg-white text-green-600 px-4 py-2 rounded-full font-semibold hover:bg-yellow-400 hover:text-green-800 transition-all duration-300 shadow-md">
+                Client Portal
+              </button>
+            </Link>
+          </div>
         </div>
         
         {/* Mobile Menu Button */}
@@ -85,11 +92,18 @@ const Navbar = () => {
           <a href="#gallery" className="py-4 text-center text-lg border-b border-green-800 hover:text-yellow-400 hover:bg-green-800/30 transition-all duration-300 touch-manipulation" onClick={handleNavLinkClick}>Gallery</a>
           <a href="#testimonials" className="py-4 text-center text-lg border-b border-green-800 hover:text-yellow-400 hover:bg-green-800/30 transition-all duration-300 touch-manipulation" onClick={handleNavLinkClick}>Testimonials</a>
           <a href="#contact" className="py-4 text-center text-lg border-b border-green-800 hover:text-yellow-400 hover:bg-green-800/30 transition-all duration-300 touch-manipulation" onClick={handleNavLinkClick}>Contact</a>
-          <Link href="/login">
-            <button className="mt-4 bg-white text-green-600 px-4 py-2 rounded-full font-semibold hover:bg-yellow-400 hover:text-green-800 transition-all duration-300 shadow-md w-full touch-manipulation" onClick={handleNavLinkClick}>
-              Client Portal
-            </button>
-          </Link>
+          <div className="flex flex-col space-y-3 mt-4">
+            <Link href="/booking">
+              <button className="bg-yellow-500 text-green-800 px-4 py-2 rounded-full font-semibold hover:bg-yellow-400 transition-all duration-300 shadow-md w-full touch-manipulation" onClick={handleNavLinkClick}>
+                Book Now
+              </button>
+            </Link>
+            <Link href="/login">
+              <button className="bg-white text-green-600 px-4 py-2 rounded-full font-semibold hover:bg-yellow-400 hover:text-green-800 transition-all duration-300 shadow-md w-full touch-manipulation" onClick={handleNavLinkClick}>
+                Client Portal
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
