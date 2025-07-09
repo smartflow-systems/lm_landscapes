@@ -6,69 +6,69 @@
   /* Base colors */
   --primary: 98 22% 19%; /* #2A6438 - main green */
   --primary-foreground: 0 0% 100%;
-  
+
   --secondary: 38 55% 92%; /* #F5EFE0 - beige */
   --secondary-foreground: 98 22% 19%;
-  
+
   --accent: 142 46% 22%; /* #1A472A - dark green */
   --accent-foreground: 0 0% 100%;
-  
+
   /* UI colors */
   --background: 60 33% 98%; /* #FAFAF7 - off white */
   --foreground: 0 0% 20%; /* #333333 - dark gray */
 
   --muted: 38 55% 92%; /* Same as secondary */
   --muted-foreground: 0 0% 45%;
-  
+
   --popover: 0 0% 100%;
   --popover-foreground: 0 0% 20%;
-  
+
   --card: 0 0% 100%;
   --card-foreground: 0 0% 20%;
-  
+
   --border: 38 55% 92%;
   --input: 38 55% 92%;
-  
+
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  
+
   --ring: 98 22% 19%;
 
   /* Additional brand colors */
   --purple: 260 30% 50%; /* #7D5BA6 - purple accent */
   --yellow: 45 100% 70%; /* #FFD966 - yellow accent */
-  
+
   --radius: 0.5rem;
 }
 
 .dark {
   --background: 0 0% 20%;
   --foreground: 60 33% 98%;
-  
+
   --muted: 210 20% 25%;
   --muted-foreground: 38 55% 92%;
-  
+
   --popover: 0 0% 20%;
   --popover-foreground: 60 33% 98%;
-  
+
   --card: 0 0% 20%;
   --card-foreground: 60 33% 98%;
-  
+
   --border: 210 20% 25%;
   --input: 210 20% 25%;
-  
+
   --primary: 98 22% 19%;
   --primary-foreground: 0 0% 100%;
-  
+
   --secondary: 210 20% 25%;
   --secondary-foreground: 60 33% 98%;
-  
+
   --accent: 142 46% 22%;
   --accent-foreground: 0 0% 100%;
-  
+
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  
+
   --ring: 38 55% 92%;
 }
 
@@ -81,20 +81,20 @@
     scroll-behavior: smooth;
     overflow-x: hidden;
   }
-  
+
   /* Prevent horizontal scroll on mobile */
   body {
     overflow-x: hidden;
     width: 100%;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   /* Smooth scrolling and touch optimizations */
   * {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
-  
+
   /* Fix mobile viewport issues */
   @supports (-webkit-touch-callout: none) {
     .min-h-screen {
@@ -131,24 +131,24 @@
   .wave-divider {
     @apply relative h-[70px] bg-transparent;
   }
-  
+
   .wave-divider::before {
     content: '';
     @apply absolute block left-0 w-full h-[70px] bg-no-repeat bg-cover z-10;
   }
-  
+
   .wave-divider-secondary::before {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z' fill='%23F5EFE0'%3E%3C/path%3E%3C/svg%3E");
   }
-  
+
   .wave-divider-primary::before {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z' fill='%232A6438'%3E%3C/path%3E%3C/svg%3E");
   }
-  
+
   .wave-divider-bottom::before {
     @apply rotate-180 bottom-0;
   }
-  
+
   .wave-divider-top::before {
     @apply top-0;
   }
@@ -175,14 +175,14 @@
     min-height: 100vh;
     width: 100%;
   }
-  
+
   /* Desktop optimizations */
   @media (min-width: 769px) {
     .hero-overlay {
       background-attachment: fixed;
     }
   }
-  
+
   /* Mobile specific fixes */
   @media (max-width: 768px) {
     .hero-overlay {
@@ -193,28 +193,28 @@
       min-height: -webkit-fill-available;
     }
   }
-  
+
   /* Extra small devices */
   @media (max-width: 480px) {
     .hero-overlay {
       background-position: center 30%;
       background-size: cover;
     }
-    
+
     /* Ensure buttons and text are properly sized */
     .container {
       padding-left: 1rem;
       padding-right: 1rem;
     }
   }
-  
+
   /* Optimize image loading and prevent layout shift */
   img {
     max-width: 100%;
     height: auto;
     display: block;
   }
-  
+
   /* Better button touch targets on mobile */
   @media (max-width: 768px) {
     button, a {
