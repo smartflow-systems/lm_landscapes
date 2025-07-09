@@ -2,7 +2,18 @@
 
 ## Overview
 
-This is a modern landscaping business website built with React and TypeScript. The application showcases L&M Landscape Maintenance's services including digger hire, fencing, garden maintenance, and landscape design. It features a contact form for quote requests and client testimonials.
+This is a modern landscaping business website built with React and TypeScript. The application showcases L&M Landscape Maintenance's services including digger hire, fencing, garden maintenance, and landscape design. It features a contact form for quote requests, client testimonials, and a comprehensive client portal for project tracking and maintenance schedules.
+
+## Recent Changes
+
+**January 2025** - Implemented complete client portal system:
+- Added user authentication with login page
+- Created client portal dashboard with project and maintenance overview
+- Built projects list page with search and filtering capabilities
+- Created maintenance schedules page with status tracking
+- Added client portal navigation button to main website
+- Integrated user-provided logo throughout portal interface
+- All portal pages use bubble-based design consistent with main website
 
 ## User Preferences
 
@@ -37,13 +48,21 @@ Preferred communication style: Simple, everyday language.
 - **Section Components**: Hero, Services, About, Gallery, Testimonials, Contact
 - **Interactive Features**: Before/after image sliders, mobile testimonial carousel
 - **Form Handling**: Contact form with validation and toast notifications
+- **Client Portal**: Login page, dashboard, projects list, maintenance schedules
+- **Portal Navigation**: Client portal button in main navbar, seamless routing
 
 ### Backend Endpoints
 - `POST /api/contact` - Handles contact form submissions with validation
+- `POST /api/login` - Handles user authentication for client portal
+- `GET /api/projects/:userId` - Retrieves user's projects
+- `GET /api/maintenance/:userId` - Retrieves user's maintenance schedules
 
 ### Database Schema
-- `users` table - Basic user authentication structure
+- `users` table - Client authentication and profile information
 - `contact_requests` table - Stores client inquiries with contact details and service requests
+- `projects` table - Tracks client projects with status, dates, and details
+- `maintenance_schedules` table - Manages recurring maintenance appointments
+- `project_updates` table - Stores project progress updates and photos
 
 ## Data Flow
 
@@ -57,6 +76,18 @@ Preferred communication style: Simple, everyday language.
 2. **Static Content**:
    - Service information, testimonials, and gallery items served from TypeScript data files
    - Images loaded from `/assets` directory with Vite asset handling
+
+3. **Client Portal Authentication**:
+   - User enters credentials on login page
+   - Authentication checked against user database
+   - User data stored in localStorage for session management
+   - Portal routes protected with authentication checks
+
+4. **Project & Maintenance Tracking**:
+   - Projects displayed with status, dates, and progress information
+   - Maintenance schedules show recurring service appointments
+   - Real-time status updates and overdue notifications
+   - Search and filter functionality for easy project management
 
 ## External Dependencies
 
