@@ -2,11 +2,11 @@ import heroImage from "@assets/IMG_20250516_183911_634.jpg";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-0">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-0 overflow-hidden">
+      <div className="container mx-auto px-4 max-w-full">
         <div className="bubble-section">
           <div className="bubble-content">
-            <div className="text-center mb-8 md:mb-12">
+            <div className="text-center mb-6 sm:mb-8 md:mb-12">
               <span className="inline-block bg-primary text-white text-sm font-bold px-3 py-1 rounded-full mb-2">ABOUT US</span>
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">Your Garden Transformation Experts</h2>
               <p className="text-accent max-w-2xl mx-auto">
@@ -14,8 +14,8 @@ const AboutSection = () => {
               </p>
             </div>
 
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-              <div className="md:w-5/12 lg:w-1/2 order-2 md:order-1">
+            <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12">
+              <div className="w-full md:w-5/12 lg:w-1/2 order-2 md:order-1">
                 <div className="bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-primary/10">
                   <h3 className="text-2xl font-semibold mb-4 text-primary">L&M Landscape Maintenance</h3>
                   <p className="mb-4 text-base md:text-lg text-accent">

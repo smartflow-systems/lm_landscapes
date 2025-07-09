@@ -2,9 +2,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-white pt-16 pb-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+    <footer className="bg-primary text-white pt-8 sm:pt-16 pb-8 overflow-hidden">
+      <div className="container mx-auto px-4 max-w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
           <div>
             <div className="flex items-center mb-6">
               <div className="h-12 w-12 rounded-full bg-secondary flex items-center justify-center border-2 border-yellow-400">
@@ -17,14 +17,14 @@ const Footer = () => {
             </div>
             <p className="mb-4">Professional landscaping services to transform and maintain your outdoor spaces.</p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-yellow-400 transition-colors" aria-label="Facebook">
+              <a href="https://www.facebook.com/profile.php?id=61565799111726" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-400 transition-colors text-xl" aria-label="Facebook">
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="https://www.instagram.com/l_m__landscape_maintenance_/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-400 transition-colors" aria-label="Instagram">
+              <a href="https://www.instagram.com/l_m__landscape_maintenance_/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-400 transition-colors text-xl" aria-label="Instagram">
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="#" className="text-white hover:text-yellow-400 transition-colors" aria-label="Twitter">
-                <i className="fab fa-twitter"></i>
+              <a href="https://www.tiktok.com/@l_m_landscape_maintenance" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-400 transition-colors text-xl" aria-label="TikTok">
+                <i className="fab fa-tiktok"></i>
               </a>
             </div>
           </div>

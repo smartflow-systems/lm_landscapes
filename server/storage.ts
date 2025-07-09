@@ -334,6 +334,105 @@ export class DbStorage implements IStorage {
       return [];
     }
   }
+
+  // Booking methods
+  async createBooking(booking: InsertBooking): Promise<Booking> {
+    if (!pool) throw new Error("Database connection not available");
+    
+    try {
+      const result = await pool.query(
+        'INSERT INTO bookings (name, email, phone, service, appointment_date, time_slot, message, status, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
+        [
+          booking.name,
+          booking.email,
+          booking.phone,
+          booking.service,
+          booking.appointmentDate,
+          booking.timeSlot,
+          booking.message,
+          'pending',
+          new Date(),
+          new Date()
+        ]
+      );
+      return result.rows[0];
+    } catch (error) {
+      console.error('Error creating booking:', error);
+      throw error;
+    }
+  }
+
+  async getBookings(date?: Date): Promise<Booking[]> {
+    if (!pool) return [];
+    
+    try {
+      let query = 'SELECT * FROM bookings';
+      let params: any[] = [];
+      
+      if (date) {
+        query += ' WHERE DATE(appointment_date) = DATE($1)';
+        params.push(date);
+      }
+      
+      query += ' ORDER BY appointment_date ASC, time_slot ASC';
+      
+      const result = await pool.query(query, params);
+      return result.rows;
+    } catch (error) {
+      console.error('Error getting bookings:', error);
+      return [];
+    }
+  }
+
+  async updateBooking(id: number, updates: Partial<InsertBooking>): Promise<Booking> {
+    if (!pool) throw new Error("Database connection not available");
+    
+    try {
+      const setClause = Object.keys(updates)
+        .map((key, index) => `${key} = $${index + 2}`)
+        .join(', ');
+      
+      const result = await pool.query(
+        `UPDATE bookings SET ${setClause}, updated_at = $1 WHERE id = $${Object.keys(updates).length + 2} RETURNING *`,
+        [new Date(), ...Object.values(updates), id]
+      );
+      return result.rows[0];
+    } catch (error) {
+      console.error('Error updating booking:', error);
+      throw error;
+    }
+  }
+
+  // Chat methods
+  async saveChatMessage(message: InsertChatMessage): Promise<ChatMessage> {
+    if (!pool) throw new Error("Database connection not available");
+    
+    try {
+      const result = await pool.query(
+        'INSERT INTO chat_messages (session_id, message, sender, timestamp) VALUES ($1, $2, $3, $4) RETURNING *',
+        [message.sessionId, message.message, message.sender, new Date()]
+      );
+      return result.rows[0];
+    } catch (error) {
+      console.error('Error saving chat message:', error);
+      throw error;
+    }
+  }
+
+  async getChatHistory(sessionId: string, limit: number = 10): Promise<ChatMessage[]> {
+    if (!pool) return [];
+    
+    try {
+      const result = await pool.query(
+        'SELECT * FROM chat_messages WHERE session_id = $1 ORDER BY timestamp ASC LIMIT $2',
+        [sessionId, limit]
+      );
+      return result.rows;
+    } catch (error) {
+      console.error('Error getting chat history:', error);
+      return [];
+    }
+  }
 }
 
 // In-memory fallback implementation for development/testing

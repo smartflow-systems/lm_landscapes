@@ -2,11 +2,11 @@ import { services } from '@/data/services';
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-0">
-      <div className="container mx-auto px-4">
+    <section id="services" className="py-0 overflow-hidden">
+      <div className="container mx-auto px-4 max-w-full">
         <div className="bubble-section">
           <div className="bubble-content">
-            <div className="text-center mb-12 md:mb-16">
+            <div className="text-center mb-8 sm:mb-12 md:mb-16">
               <span className="inline-block bg-primary text-white text-sm font-bold px-3 py-1 rounded-full mb-2">WHAT WE DO</span>
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Our Professional Services</h2>
               <p className="text-accent max-w-2xl mx-auto">
@@ -14,7 +14,7 @@ const ServicesSection = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {services.map((service) => (
                 <div 
                   key={service.id}
