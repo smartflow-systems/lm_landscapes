@@ -1,10 +1,24 @@
 import OpenAI from "openai";
 
 // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+// Create OpenAI client only when needed and check for API key
+function getOpenAIClient(): OpenAI | null {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    console.warn("OPENAI_API_KEY not found - chat functionality will be limited");
+    return null;
+  }
+  return new OpenAI({ apiKey });
+}
 
 export async function generateChatResponse(message: string, conversationHistory: Array<{role: 'user' | 'assistant', content: string}> = []): Promise<string> {
   try {
+    // Check if OpenAI API key is available
+    const openai = getOpenAIClient();
+    if (!openai) {
+      return "I'm sorry, our chat service is temporarily unavailable. Please call us at 07542 331 653 or use our contact form for assistance.";
+    }
     const systemPrompt = `You are a helpful AI assistant for L&M Landscape Maintenance, a professional landscaping company based in Manchester Failsworth. You provide expert advice and assistance with:
 
 SERVICES OFFERED:
@@ -58,6 +72,7 @@ Keep responses concise but helpful. Always be encouraging about their landscapin
     return response.choices[0].message.content || "I'm sorry, I'm having trouble responding right now. Please try asking again or call us at 07542 331 653.";
   } catch (error) {
     console.error("Error generating chat response:", error);
-    throw new Error("Failed to generate response");
+    // Return a helpful fallback message instead of throwing an error
+    return "I'm sorry, I'm having trouble responding right now. Please try asking again or call us at 07542 331 653 for immediate assistance.";
   }
 }
