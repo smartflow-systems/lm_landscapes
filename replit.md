@@ -17,6 +17,11 @@ This is a modern landscaping business website built with React and TypeScript. T
 - **NEW: Google Calendar booking system with on-page calendar interface**
 - **NEW: AI-powered chatbot with intelligent customer service capabilities**
 - **NEW: Book Now button in main navigation for easy appointment scheduling**
+- **LATEST: Deployment fixes for production stability**
+  - Made OpenAI API key optional with graceful fallback messaging
+  - Added comprehensive error handling to prevent server crashes
+  - Implemented database connection resilience with automatic fallback to in-memory storage
+  - Enhanced server startup error handling with graceful recovery mechanisms
 
 ## User Preferences
 
