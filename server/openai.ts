@@ -17,7 +17,8 @@ export async function generateChatResponse(message: string, conversationHistory:
     // Check if OpenAI API key is available
     const openai = getOpenAIClient();
     if (!openai) {
-      return "I'm sorry, our chat service is temporarily unavailable. Please call us at 07542 331 653 or use our contact form for assistance.";
+      console.warn("OpenAI service unavailable - providing fallback response");
+      return "I'm sorry, our AI chat service is currently unavailable. However, I can still help you! Please call us at 07542 331 653 or use our contact form for assistance with:\n\n• Garden maintenance and landscaping\n• Digger hire and excavation\n• Fencing and decking\n• Free consultations\n\nOur team is available Monday-Saturday, 8am-6pm.";
     }
     const systemPrompt = `You are a helpful AI assistant for L&M Landscape Maintenance, a professional landscaping company based in Manchester Failsworth. You provide expert advice and assistance with:
 
@@ -69,10 +70,16 @@ Keep responses concise but helpful. Always be encouraging about their landscapin
       temperature: 0.7,
     });
 
-    return response.choices[0].message.content || "I'm sorry, I'm having trouble responding right now. Please try asking again or call us at 07542 331 653.";
+    const responseContent = response.choices[0]?.message?.content;
+    if (!responseContent) {
+      console.warn("OpenAI returned empty response, providing fallback");
+      return "I'm sorry, I didn't quite catch that. Could you please rephrase your question? Or feel free to call us at 07542 331 653 for immediate assistance.";
+    }
+    
+    return responseContent;
   } catch (error) {
     console.error("Error generating chat response:", error);
     // Return a helpful fallback message instead of throwing an error
-    return "I'm sorry, I'm having trouble responding right now. Please try asking again or call us at 07542 331 653 for immediate assistance.";
+    return "I'm experiencing some technical difficulties right now. Please try asking again in a moment, or call us directly at 07542 331 653 for immediate assistance with your landscaping needs.";
   }
 }
