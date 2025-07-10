@@ -21,21 +21,35 @@ import { Pool } from "pg";
 // Create a single connection pool
 let pool: Pool | undefined;
 
-// Initialize database connection
+// Initialize database connection with enhanced error handling
 function initializeDatabase() {
   if (pool) return; // Already initialized
   
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
-    console.log("No database connection string available, using in-memory storage");
+    console.warn("DATABASE_URL not found - using in-memory storage for all data");
     return;
   }
   
   try {
-    pool = new Pool({ connectionString });
+    pool = new Pool({ 
+      connectionString,
+      // Add connection timeout and retry configuration
+      connectionTimeoutMillis: 5000,
+      idleTimeoutMillis: 30000,
+      max: 10,
+      allowExitOnIdle: true
+    });
     console.log("Database connection established successfully");
+    
+    // Test the connection
+    pool.query('SELECT 1').catch(error => {
+      console.warn("Database connection test failed, will fall back to in-memory storage:", error);
+      pool = undefined;
+    });
   } catch (error) {
-    console.error("Failed to connect to database:", error);
+    console.error("Failed to create database pool:", error);
+    console.warn("Application will continue with in-memory storage");
     pool = undefined;
   }
 }
@@ -913,4 +927,12 @@ export class MemStorage implements IStorage {
 }
 
 // Use database storage when pool is available, otherwise fall back to in-memory
-export const storage = pool ? new DbStorage() : new MemStorage();
+// This ensures the application continues to function even without database access
+export const storage = (() => {
+  try {
+    return pool ? new DbStorage() : new MemStorage();
+  } catch (error) {
+    console.error("Error initializing storage, falling back to in-memory:", error);
+    return new MemStorage();
+  }
+})();

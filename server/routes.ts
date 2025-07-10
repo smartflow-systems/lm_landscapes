@@ -247,36 +247,53 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ success: false, message: 'Message and session ID are required' });
       }
 
-      // Get conversation history
-      const history = await storage.getChatHistory(sessionId, 8);
-      const conversationHistory = history.map(msg => ({
-        role: msg.sender as 'user' | 'assistant',
-        content: msg.message
-      }));
+      // Get conversation history with error handling
+      let conversationHistory = [];
+      try {
+        const history = await storage.getChatHistory(sessionId, 8);
+        conversationHistory = history.map(msg => ({
+          role: msg.sender as 'user' | 'assistant',
+          content: msg.message
+        }));
+      } catch (historyError) {
+        console.warn('Could not retrieve chat history:', historyError);
+        // Continue without history if storage fails
+      }
 
-      // Save user message
-      await storage.saveChatMessage({
-        sessionId,
-        message,
-        sender: 'user'
-      });
+      // Save user message with error handling
+      try {
+        await storage.saveChatMessage({
+          sessionId,
+          message,
+          sender: 'user'
+        });
+      } catch (saveError) {
+        console.warn('Could not save user message:', saveError);
+        // Continue even if saving fails
+      }
 
-      // Generate AI response
+      // Generate AI response with enhanced error handling
       const aiResponse = await generateChatResponse(message, conversationHistory);
 
-      // Save AI response
-      await storage.saveChatMessage({
-        sessionId,
-        message: aiResponse,
-        sender: 'assistant'
-      });
+      // Save AI response with error handling
+      try {
+        await storage.saveChatMessage({
+          sessionId,
+          message: aiResponse,
+          sender: 'assistant'
+        });
+      } catch (saveError) {
+        console.warn('Could not save AI response:', saveError);
+        // Continue even if saving fails
+      }
 
       res.json({ success: true, message: aiResponse });
     } catch (error) {
       console.error('Error in chat endpoint:', error);
-      res.status(500).json({ 
-        success: false, 
-        message: 'Sorry, I\'m having trouble responding right now. Please try again or call us at 07542 331 653.' 
+      // Provide a helpful fallback response even if everything fails
+      res.json({ 
+        success: true, 
+        message: 'I\'m sorry, our chat service is temporarily unavailable. Please call us at 07542 331 653 or use our contact form for assistance.' 
       });
     }
   });
