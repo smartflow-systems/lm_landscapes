@@ -37,6 +37,12 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Environment variable checks and warnings
+  console.log("🔍 Environment Check:");
+  console.log(`  - NODE_ENV: ${process.env.NODE_ENV || 'not set'}`);
+  console.log(`  - DATABASE_URL: ${process.env.DATABASE_URL ? '✅ configured' : '⚠️  not configured (will use in-memory storage)'}`);
+  console.log(`  - OPENAI_API_KEY: ${process.env.OPENAI_API_KEY ? '✅ configured' : '⚠️  not configured (chat service will be limited)'}`);
+  
   try {
     const server = await registerRoutes(app);
 
@@ -68,25 +74,48 @@ app.use((req, res, next) => {
       // Continue without Vite if it fails
     }
 
-    // ALWAYS serve the app on port 5000
-    const port = 5000;
-    const host = "0.0.0.0";
+    // ALWAYS serve the app on port 5000 with enhanced configuration
+    const port = process.env.PORT ? parseInt(process.env.PORT) : 5000;
+    const host = process.env.HOST || "0.0.0.0";
     
     server.listen({
       port,
       host,
       reusePort: true,
     }, () => {
-      log(`serving on port ${port}`);
+      log(`serving on ${host}:${port}`);
+      console.log(`✅ Application successfully started on ${host}:${port}`);
     });
 
     // Handle server errors gracefully
     server.on('error', (error: any) => {
       if (error.code === 'EADDRINUSE') {
+        console.error(`❌ Port ${port} is already in use`);
         log(`Port ${port} is already in use, trying to continue...`, "error");
+      } else if (error.code === 'EACCES') {
+        console.error(`❌ Permission denied for port ${port}`);
+        log(`Permission denied for port ${port}`, "error");
       } else {
+        console.error(`❌ Server error: ${error.message}`);
         log(`Server error: ${error.message}`, "error");
       }
+    });
+    
+    // Handle process termination gracefully
+    process.on('SIGTERM', () => {
+      console.log('🔄 SIGTERM received, shutting down gracefully...');
+      server.close(() => {
+        console.log('✅ Process terminated');
+        process.exit(0);
+      });
+    });
+    
+    process.on('SIGINT', () => {
+      console.log('🔄 SIGINT received, shutting down gracefully...');
+      server.close(() => {
+        console.log('✅ Process terminated');
+        process.exit(0);
+      });
     });
 
   } catch (error) {
@@ -112,6 +141,7 @@ app.use((req, res, next) => {
       });
       
       app.listen(port, host, () => {
+        console.log(`🚨 Fallback server running on ${host}:${port}`);
         log(`Fallback server running on port ${port} at ${host}`, "error");
       });
     } catch (fallbackError) {

@@ -22,12 +22,12 @@ import { Pool } from "pg";
 let pool: Pool | undefined;
 
 // Initialize database connection with enhanced error handling
-function initializeDatabase() {
+async function initializeDatabase() {
   if (pool) return; // Already initialized
   
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
-    console.warn("DATABASE_URL not found - using in-memory storage for all data");
+    console.warn("⚠️  DATABASE_URL not found - using in-memory storage for all data");
     return;
   }
   
@@ -35,27 +35,41 @@ function initializeDatabase() {
     pool = new Pool({ 
       connectionString,
       // Add connection timeout and retry configuration
-      connectionTimeoutMillis: 5000,
+      connectionTimeoutMillis: 10000,
       idleTimeoutMillis: 30000,
       max: 10,
-      allowExitOnIdle: true
+      allowExitOnIdle: true,
+      // Add SSL configuration for production deployments
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
     });
-    console.log("Database connection established successfully");
     
-    // Test the connection
-    pool.query('SELECT 1').catch(error => {
-      console.warn("Database connection test failed, will fall back to in-memory storage:", error);
+    // Test the connection with timeout
+    try {
+      const testQuery = await Promise.race([
+        pool.query('SELECT 1'),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Database connection timeout')), 8000)
+        )
+      ]);
+      console.log("✅ Database connection established successfully");
+    } catch (testError) {
+      console.warn("⚠️  Database connection test failed, will fall back to in-memory storage:", testError);
+      pool?.end().catch(() => {}); // Clean up failed pool
       pool = undefined;
-    });
+    }
+    
   } catch (error) {
-    console.error("Failed to create database pool:", error);
-    console.warn("Application will continue with in-memory storage");
+    console.error("❌ Failed to create database pool:", error);
+    console.warn("⚠️  Application will continue with in-memory storage");
     pool = undefined;
   }
 }
 
 // Initialize the database when this module is loaded
-initializeDatabase();
+initializeDatabase().catch(error => {
+  console.error("Database initialization failed:", error);
+  console.warn("Continuing with in-memory storage");
+});
 
 // Interface for storage operations
 export interface IStorage {

@@ -291,9 +291,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error in chat endpoint:', error);
       // Provide a helpful fallback response even if everything fails
+      const fallbackMessage = process.env.OPENAI_API_KEY 
+        ? 'I\'m experiencing technical difficulties. Please try again in a moment, or call us at 07542 331 653 for immediate assistance.'
+        : 'Our AI chat service requires configuration. Please call us at 07542 331 653 or use our contact form for assistance with your landscaping needs.';
+      
       res.json({ 
         success: true, 
-        message: 'I\'m sorry, our chat service is temporarily unavailable. Please call us at 07542 331 653 or use our contact form for assistance.' 
+        message: fallbackMessage
       });
     }
   });
