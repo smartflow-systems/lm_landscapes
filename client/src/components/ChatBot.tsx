@@ -23,7 +23,7 @@ const ChatBot = () => {
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+  const [sessionId] = useState(() => `session_${crypto.randomUUID()}`);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
