@@ -236,7 +236,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold">Phone</h4>
-                    <p className="text-lg text-primary font-semibold">07542 331 653</p>
+                    <a href="tel:+447542331653" className="text-lg text-primary font-semibold hover:underline">07542 331 653</a>
                     <p className="text-sm text-gray-500">Available Mon-Sat, 8am-6pm</p>
                   </div>
                 </div>
@@ -262,6 +262,36 @@ const ContactSection = () => {
                     <p className="text-sm text-gray-500">Serving Greater Manchester and surrounding areas</p>
                   </div>
                 </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8 pt-6 border-t border-gray-100">
+                <a
+                  href="https://wa.me/447542331653?text=Hi%20L%26M%2C%20I%27d%20like%20a%20free%20landscaping%20quote."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#25D366] px-4 py-3 font-semibold text-white hover:bg-[#1fb858] transition-colors"
+                >
+                  <i className="fab fa-whatsapp text-xl"></i>
+                  WhatsApp
+                </a>
+                <a
+                  href="https://www.facebook.com/712947911912093"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#1877F2] px-4 py-3 font-semibold text-white hover:bg-[#1264cf] transition-colors"
+                >
+                  <i className="fab fa-facebook-f"></i>
+                  Facebook
+                </a>
+                <a
+                  href="https://www.instagram.com/l_m__landscape_maintenance_/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 font-semibold text-white hover:bg-accent transition-colors"
+                >
+                  <i className="fab fa-instagram text-xl"></i>
+                  Instagram
+                </a>
               </div>
             </div>
             
