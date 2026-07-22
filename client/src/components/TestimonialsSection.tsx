@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { testimonials } from '@/data/testimonials';
-import heroImage from "@assets/IMG_20250516_183911_634.jpg";
 
 const TestimonialsSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -31,12 +30,7 @@ const TestimonialsSection = () => {
             <div className="md:hidden mb-8 relative">
               <div className="overflow-hidden">
                 <div 
-                  className="bg-gradient-to-b from-primary to-primary/80 rounded-2xl p-6 shadow-lg relative mx-auto max-w-sm"
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(26, 71, 42, 0.95), rgba(26, 71, 42, 0.9)), url(${heroImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
+                  className="bg-gradient-to-br from-primary to-accent rounded-2xl p-6 shadow-lg relative mx-auto max-w-sm"
                 >
                   <div className="absolute -top-4 -left-4 bg-yellow-400 h-10 w-10 rounded-full flex items-center justify-center shadow-xl">
                     <i className="fas fa-quote-left text-primary text-lg"></i>

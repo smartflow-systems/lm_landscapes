@@ -1,4 +1,4 @@
-import heroImage from "@assets/IMG_20250516_183911_634.jpg";
+import teamAtWorkImage from "@assets/IMG_0498.jpeg";
 
 const AboutSection = () => {
   return (
@@ -10,7 +10,7 @@ const AboutSection = () => {
               <span className="inline-block bg-primary text-white text-sm font-bold px-3 py-1 rounded-full mb-2">ABOUT US</span>
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">Your Garden Transformation Experts</h2>
               <p className="text-accent max-w-2xl mx-auto">
-                Where passion for nature meets professional landscaping excellence
+                Local, hands-on landscaping for gardens across Greater Manchester
               </p>
             </div>
 
@@ -19,12 +19,10 @@ const AboutSection = () => {
                 <div className="bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-primary/10">
                   <h3 className="text-2xl font-semibold mb-4 text-primary">L&M Landscape Maintenance</h3>
                   <p className="mb-4 text-base md:text-lg text-accent">
-                    We're dedicated to bringing nature's beauty to your doorstep. Our skilled team transforms ordinary outdoor spaces 
-                    into extraordinary natural havens that you'll love sharing on social media.
+                    L&amp;M handles the practical work behind a successful garden project, from clearance and digger excavation through to fencing, paving and final finishes.
                   </p>
                   <p className="mb-6 text-base md:text-lg text-accent">
-                    Our commitment to quality, attention to detail, and passion for landscaping ensures 
-                    that every project we undertake exceeds expectations and creates Instagram-worthy spaces.
+                    Every job starts with the site in front of us. We focus on sound preparation, tidy workmanship and a finished space that suits how the customer wants to use it.
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -65,27 +63,16 @@ const AboutSection = () => {
               </div>
 
               <div className="md:w-7/12 lg:w-1/2 order-1 md:order-2 flex justify-center">
-                <div className="relative">
-                  <div className="h-64 w-64 md:h-80 md:w-80 rounded-full bg-secondary border-4 border-yellow-400 flex items-center justify-center p-8 animate-float shadow-2xl relative z-10">
-                    <div className="absolute inset-0 rounded-full overflow-hidden">
-                      <img 
-                        src={heroImage} 
-                        alt="L&M Landscape Maintenance" 
-                        className="object-cover w-full h-full"
-                      />
-                      <div className="absolute inset-0 bg-primary/30"></div>
-                    </div>
-                    <div className="bg-yellow-400 h-24 w-24 rounded-full flex items-center justify-center z-20 shadow-lg">
-                      <i className="fas fa-leaf text-primary text-5xl"></i>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute -top-4 -right-4 bg-purple-500 text-white p-3 rounded-full shadow-lg z-30 animate-bounce">
-                    <i className="fas fa-star"></i>
-                  </div>
-                  
-                  <div className="absolute -bottom-4 -left-4 bg-yellow-400 text-primary p-3 rounded-full shadow-lg z-30 animate-bounce" style={{animationDelay: '0.5s'}}>
-                    <i className="fas fa-seedling"></i>
+                <div className="relative w-full max-w-xl overflow-hidden rounded-3xl shadow-2xl border-4 border-white">
+                  <img
+                    src={teamAtWorkImage}
+                    alt="L&M mini digger carrying out garden excavation work"
+                    loading="lazy"
+                    className="w-full aspect-[4/3] object-cover"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary via-primary/85 to-transparent px-6 pt-14 pb-5 text-white">
+                    <p className="font-semibold text-lg">The right groundwork makes the finish last.</p>
+                    <p className="text-sm text-white/85">Mini-digger excavation on a restricted garden site.</p>
                   </div>
                 </div>
               </div>

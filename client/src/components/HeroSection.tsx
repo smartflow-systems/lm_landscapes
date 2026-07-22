@@ -10,13 +10,13 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 min-h-screen flex flex-col justify-center items-start py-16 sm:py-20 md:py-24 relative z-10 max-w-full">
         <div className="max-w-full sm:max-w-2xl w-full">
           <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-3 sm:mb-4 animate-float">
-            Transform Your <span className="text-yellow-400">Outdoor Space</span>
+            Landscaping Built Around <span className="text-yellow-400">Your Garden</span>
           </h1>
           <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-semibold text-white mb-4 sm:mb-6">
-            Digger & Driver Hire Available
+            Digger Hire, Groundworks, Fencing, Paving &amp; Garden Finishes
           </h2>
           <p className="text-white text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-full sm:max-w-lg leading-relaxed">
-            We provide a variety of professional landscaping services to keep your garden in perfect shape.
+            Practical landscaping and maintenance across Failsworth, Manchester and surrounding areas. Call or message for a free quote.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
             <a 

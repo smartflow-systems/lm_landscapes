@@ -1,5 +1,4 @@
 import { galleryItems } from '@/data/gallery';
-import BeforeAfterSlider from './BeforeAfterSlider';
 
 const GallerySection = () => {
   return (
@@ -8,39 +7,36 @@ const GallerySection = () => {
         <div className="bubble-section">
           <div className="bubble-content">
             <div className="text-center mb-8 sm:mb-12 md:mb-16">
-              <span className="inline-block bg-primary text-white text-sm font-bold px-3 py-1 rounded-full mb-2">BEFORE & AFTER</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Our Garden Transformations</h2>
+              <span className="inline-block bg-primary text-white text-sm font-bold px-3 py-1 rounded-full mb-2">RECENT WORK</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Real Landscaping Jobs</h2>
               <p className="text-accent max-w-2xl mx-auto">
-                Slide to see the dramatic difference our landscaping services can make to your outdoor space.
+                A closer look at the clearance, groundwork, fencing, paving and finishing work carried out by L&amp;M.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8 xl:gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {galleryItems.map((item) => (
                 <div 
                   key={item.id} 
-                  className="rounded-xl shadow-lg overflow-hidden bg-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                  className="group rounded-2xl shadow-lg overflow-hidden bg-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
                 >
-                  <div className="overflow-hidden h-[300px] sm:h-[320px] xl:h-[280px] relative">
-                    <div className="absolute top-2 right-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded-md z-10">
-                      Before & After
-                    </div>
-                    <BeforeAfterSlider
-                      beforeImage={item.beforeImage}
-                      afterImage={item.afterImage}
-                      beforeAlt={`${item.title} Before`}
-                      afterAlt={`${item.title} After`}
+                  <div className="overflow-hidden aspect-[4/3] relative bg-secondary">
+                    <img
+                      src={item.image}
+                      alt={item.alt}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                  </div>
-                  <div className="p-5 bg-white">
-                    <h3 className="text-xl font-semibold text-primary mb-2">{item.title}</h3>
-                    <p className="text-sm text-darkgray mb-4">{item.description}</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs bg-secondary text-accent px-3 py-1 rounded-full">Garden Makeover</span>
-                      <a href="#contact" className="text-primary font-medium text-sm hover:underline flex items-center">
-                        Get a similar look <i className="fas fa-chevron-right ml-1 text-xs"></i>
-                      </a>
+                    <div className="absolute top-3 left-3 bg-primary/95 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
+                      {item.category}
                     </div>
+                  </div>
+                  <div className="p-5 bg-white flex flex-col flex-grow">
+                    <h3 className="text-xl font-semibold text-primary mb-2">{item.title}</h3>
+                    <p className="text-sm leading-relaxed text-gray-700 mb-5">{item.description}</p>
+                    <a href="#contact" className="text-primary font-semibold text-sm hover:underline inline-flex items-center mt-auto">
+                      Ask about this service <i className="fas fa-chevron-right ml-1 text-xs"></i>
+                    </a>
                   </div>
                 </div>
               ))}
