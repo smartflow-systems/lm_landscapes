@@ -17,11 +17,14 @@ const Footer = () => {
             </div>
             <p className="mb-4">Professional landscaping services to transform and maintain your outdoor spaces.</p>
             <div className="flex space-x-4">
-              <a href="https://www.facebook.com/profile.php?id=61565799111726" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-400 transition-colors text-xl" aria-label="Facebook">
+              <a href="https://www.facebook.com/712947911912093" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-400 transition-colors text-xl" aria-label="L&M Landscape Maintenance on Facebook">
                 <i className="fab fa-facebook-f"></i>
               </a>
               <a href="https://www.instagram.com/l_m__landscape_maintenance_/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-400 transition-colors text-xl" aria-label="Instagram">
                 <i className="fab fa-instagram"></i>
+              </a>
+              <a href="https://wa.me/447542331653?text=Hi%20L%26M%2C%20I%27d%20like%20a%20free%20landscaping%20quote." target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-400 transition-colors text-xl" aria-label="Message L&M Landscape Maintenance on WhatsApp">
+                <i className="fab fa-whatsapp"></i>
               </a>
               <a href="https://www.tiktok.com/@l_m_landscape_maintenance" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-400 transition-colors text-xl" aria-label="TikTok">
                 <i className="fab fa-tiktok"></i>
@@ -58,7 +61,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center">
                 <i className="fas fa-phone mr-3 text-yellow-400"></i>
-                <span>07542 331 653</span>
+                <a href="tel:+447542331653" className="hover:text-yellow-400 transition-colors">07542 331 653</a>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-envelope mr-3 text-yellow-400"></i>
