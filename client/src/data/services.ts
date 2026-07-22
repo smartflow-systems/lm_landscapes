@@ -1,5 +1,5 @@
 
-import diggerImage from '@assets/Screenshot_2026-07-22_185603_1784753102192.png';
+import diggerImage from '@assets/IMG_0498.jpeg';
 import groundworksImage from '@assets/Screenshot_2026-07-22_185358_1784753102191.png';
 import fencingImage from '@assets/Screenshot_2026-07-22_185457_1784753102191.png';
 import pavingImage from '@assets/Screenshot_2026-07-22_185331_1784753102191.png';
