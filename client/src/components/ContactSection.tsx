@@ -179,12 +179,12 @@ const ContactSection = () => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="digger">Digger & Driver Hire</SelectItem>
-                      <SelectItem value="fencing">Fencing, Sleepers & Decking</SelectItem>
-                      <SelectItem value="lighting">Outdoor Lighting</SelectItem>
+                      <SelectItem value="groundworks">Groundworks & Site Preparation</SelectItem>
+                      <SelectItem value="fencing">Fencing, Sleepers & Screening</SelectItem>
+                      <SelectItem value="paving">Patios, Paths & Paving</SelectItem>
+                      <SelectItem value="artificial-grass">Artificial Grass & Garden Finishes</SelectItem>
                       <SelectItem value="painting">External Painting</SelectItem>
                       <SelectItem value="maintenance">Garden Maintenance</SelectItem>
-                      <SelectItem value="design">Full Landscape Design</SelectItem>
-                      <SelectItem value="driveways">Driveways & Patios</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
@@ -247,7 +247,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold">Email</h4>
-                    <p className="text-lg text-primary">lmlandsm@gmail.com</p>
+                    <p className="text-lg text-primary">info@landmlandscapes.co.uk</p>
                     <p className="text-sm text-gray-500">We'll respond within 24 hours</p>
                   </div>
                 </div>

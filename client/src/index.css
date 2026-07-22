@@ -229,7 +229,7 @@
   }
 
   .hero-overlay {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('@assets/IMG_20250516_183911_634.jpg');
+    background-image: linear-gradient(90deg, rgba(14, 37, 24, 0.88) 0%, rgba(14, 37, 24, 0.62) 48%, rgba(14, 37, 24, 0.2) 100%), url('@assets/IMG_0495.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -288,7 +288,7 @@
   /* Bubble design utilities */
   .bubble-section {
     background: hsl(var(--bubble-green));
-    border-radius: 50px;
+    border-radius: 32px;
     padding: 2rem;
     margin: 1rem;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.05);
@@ -304,7 +304,7 @@
   
   .bubble-content {
     background: hsl(var(--bubble-cream));
-    border-radius: 40px;
+    border-radius: 26px;
     padding: 2.5rem;
     position: relative;
     z-index: 2;

@@ -1,3 +1,10 @@
+import diggerImage from '@assets/IMG_0498.jpeg';
+import groundworksImage from '@assets/IMG_0480.jpeg';
+import fencingImage from '@assets/IMG_0484.jpeg';
+import pavingImage from '@assets/IMG_0485.jpeg';
+import artificialGrassImage from '@assets/IMG_0495.jpeg';
+import paintingImage from '@assets/IMG_0486.jpeg';
+
 export type Service = {
   id: string;
   title: string;
@@ -10,36 +17,43 @@ export const services: Service[] = [
   {
     id: 'digger',
     title: 'Digger & Driver Hire',
-    description: 'Professional excavation services for landscaping projects of any size. Our skilled operators can handle all your digging needs.',
+    description: 'Mini-digger hire with an experienced driver for excavation, garden clearance and preparing difficult ground.',
     icon: 'fa-truck-monster',
-    image: './assets/IMG_0498.jpeg'
+    image: diggerImage
+  },
+  {
+    id: 'groundworks',
+    title: 'Groundworks & Site Preparation',
+    description: 'Clearance, excavation, levelling and compacted sub-base preparation ready for the next stage of your project.',
+    icon: 'fa-mountain',
+    image: groundworksImage
   },
   {
     id: 'fencing',
-    title: 'Fencing, Sleepers, Decking & Lighting',
-    description: 'Create beautiful boundaries and outdoor living spaces with our quality fencing, sleepers, decking, and atmospheric lighting solutions.',
-    icon: 'fa-fence',
-    image: '/assets/IMG_0495.jpeg'
+    title: 'Fencing, Sleepers & Screening',
+    description: 'Practical, tidy boundaries built with fencing, timber screening and sleepers to shape and secure your garden.',
+    icon: 'fa-border-all',
+    image: fencingImage
+  },
+  {
+    id: 'paving',
+    title: 'Patios, Paths & Paving',
+    description: 'Neatly laid paving for patios and paths, with careful edging and groundwork for a durable, clean finish.',
+    icon: 'fa-road',
+    image: pavingImage
+  },
+  {
+    id: 'artificial-grass',
+    title: 'Artificial Grass & Garden Finishes',
+    description: 'Low-maintenance artificial lawns finished with paving and defined edges for a garden that stays usable year-round.',
+    icon: 'fa-leaf',
+    image: artificialGrassImage
   },
   {
     id: 'painting',
-    title: 'External Painting & Garden Maintenance',
-    description: 'Keep your outdoor structures looking fresh with our external painting services, along with comprehensive garden maintenance.',
+    title: 'External Painting & Maintenance',
+    description: 'Fence and exterior painting alongside general garden maintenance to refresh and protect your outdoor space.',
     icon: 'fa-paint-roller',
-    image: 'https://images.unsplash.com/photo-1558904541-efa843a96f01?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500'
-  },
-  {
-    id: 'design',
-    title: 'Full Landscape Design',
-    description: 'Transform your outdoor space with our comprehensive landscape design services, creating harmony between aesthetics and functionality.',
-    icon: 'fa-drafting-compass',
-    image: '/assets/IMG_0488.jpeg'
-  },
-  {
-    id: 'driveways',
-    title: 'Driveways & Patios',
-    description: 'Enhance your property with our custom driveway and patio solutions, using quality materials for durability and aesthetic appeal.',
-    icon: 'fa-road',
-    image: '/assets/IMG_0497.jpeg'
+    image: paintingImage
   }
 ];

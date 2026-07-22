@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 const Home: React.FC = () => {
   // Set page title and metadata
   useEffect(() => {
-    document.title = "L&M Landscape Maintenance - Professional Landscaping Services";
+    document.title = "L&M Landscape Maintenance | Landscaping in Failsworth";
   }, []);
 
   return (

@@ -16,12 +16,12 @@ document.head.appendChild(fontAwesome);
 
 // Add metadata
 const title = document.createElement("title");
-title.textContent = "L&M Landscape Maintenance - Professional Landscaping Services";
+title.textContent = "L&M Landscape Maintenance | Landscaping in Failsworth";
 document.head.appendChild(title);
 
 const metaDesc = document.createElement("meta");
 metaDesc.name = "description";
-metaDesc.content = "L&M Landscape Maintenance offers professional landscaping services including digger hire, fencing, decking, garden maintenance, and more. Get a free quote today!";
+metaDesc.content = "Digger hire, groundworks, fencing, paving, artificial grass and garden maintenance across Failsworth and Greater Manchester. Request a free quote.";
 document.head.appendChild(metaDesc);
 
 createRoot(document.getElementById("root")!).render(<App />);
