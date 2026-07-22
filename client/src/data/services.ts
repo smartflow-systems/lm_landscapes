@@ -1,9 +1,10 @@
-import diggerImage from '@assets/IMG_0498.jpeg';
-import groundworksImage from '@assets/IMG_0480.jpeg';
-import fencingImage from '@assets/IMG_0484.jpeg';
-import pavingImage from '@assets/IMG_0485.jpeg';
-import artificialGrassImage from '@assets/IMG_0495.jpeg';
-import paintingImage from '@assets/IMG_0486.jpeg';
+
+import diggerImage from '@assets/Screenshot_2026-07-22_185603_1784753102192.png';
+import groundworksImage from '@assets/Screenshot_2026-07-22_185358_1784753102191.png';
+import fencingImage from '@assets/Screenshot_2026-07-22_185457_1784753102191.png';
+import pavingImage from '@assets/Screenshot_2026-07-22_185331_1784753102191.png';
+import artificialGrassImage from '@assets/Screenshot_2026-07-22_185137_1784753102190.png';
+import paintingImage from '@assets/Screenshot_2026-07-22_185710_1784753102192.png';
 
 export type Service = {
   id: string;

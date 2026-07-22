@@ -1,4 +1,4 @@
-import teamAtWorkImage from "@assets/IMG_0498.jpeg";
+import teamAtWorkImage from "@assets/Screenshot_2026-07-22_185427_1784753102191.png";
 
 const AboutSection = () => {
   return (
@@ -66,13 +66,13 @@ const AboutSection = () => {
                 <div className="relative w-full max-w-xl overflow-hidden rounded-3xl shadow-2xl border-4 border-white">
                   <img
                     src={teamAtWorkImage}
-                    alt="L&M mini digger carrying out garden excavation work"
+                    alt="L&M team member surveying a completed garden lawn"
                     loading="lazy"
                     className="w-full aspect-[4/3] object-cover"
                   />
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary via-primary/85 to-transparent px-6 pt-14 pb-5 text-white">
                     <p className="font-semibold text-lg">The right groundwork makes the finish last.</p>
-                    <p className="text-sm text-white/85">Mini-digger excavation on a restricted garden site.</p>
+                    <p className="text-sm text-white/85">Checking every detail before handover to the customer.</p>
                   </div>
                 </div>
               </div>

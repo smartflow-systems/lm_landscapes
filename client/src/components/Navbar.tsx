@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'wouter';
 import { cn } from '@/lib/utils';
-import logoImage from '@assets/image_1752028917776.png';
+import logoImage from '@assets/Screenshot_2026-07-22_185747_1784753102193.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
